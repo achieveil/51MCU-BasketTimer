@@ -1,0 +1,2 @@
+.\build\Release\src\main.o TO .\build\Release\51MCU-BasketTimer
+PRINT(.\build\Release\51MCU-BasketTimer.map) REMOVEUNUSED

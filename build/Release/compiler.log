@@ -1,0 +1,17 @@
+>>> cc
+
+
+
+>>> ld
+
+
+LX51 LINKER/LOCATER V4.66.100.0 - SN: Eval Version
+COPYRIGHT Copyright (C) 1995-2021, Arm Limited or its Affiliates. All rights reserved.
+@c:\Users\achie\OneDrive\Projects\EIDEProjects\¿Î³ÌC51\51MCU-BasketTimer\build\Release\51MCU-BasketTimer.lnp .\build\Release\src\main.o TO .\build\Release\51MCU-BasketTimer
+PRINT(.\build\Release\51MCU-BasketTimer.map) REMOVEUNUSED
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0391H BYTE (44%) *
+******************************************************************************
+
+Program Size: data=38.2 xdata=0 const=16 code=1075
+LX51 RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

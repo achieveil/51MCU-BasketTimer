@@ -1,0 +1,3 @@
+tool: KEIL_C51
+fileName: 51MCU-BasketTimer.map
+elfName: 51MCU-BasketTimer

@@ -1,0 +1,246 @@
+LX51 LINKER/LOCATER V4.66.100.0                                                         12/23/2023  15:26:00  PAGE 1
+
+
+LX51 LINKER/LOCATER V4.66.100.0, INVOKED BY:
+C:\PROGRAM FILES (X86)\KEIL_V5\C51\BIN\LX51.EXE .\BUILD\RELEASE\SRC\MAIN.O TO .\BUILD\RELEASE\51MCU-BASKETTIMER PRINT (.
+>> \build\Release\51MCU-BasketTimer.map) REMOVEUNUSED
+
+
+CPU MODE:     8051 MODE
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\BUILD\RELEASE\SRC\MAIN.O (MAIN)
+         COMMENT TYPE 0: C51 V9.60.7.0
+  C:\PROGRAM FILES (X86)\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  C:\PROGRAM FILES (X86)\KEIL_V5\C51\LIB\C51S.LIB (?C?SCDIV)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  C:\PROGRAM FILES (X86)\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+
+
+ACTIVE MEMORY CLASSES OF MODULE:  .\BUILD\RELEASE\51MCU-BASKETTIMER (MAIN)
+
+BASE        START       END         USED      MEMORY CLASS
+==========================================================
+C:000000H   C:000000H   C:00FFFFH   000433H   CODE
+I:000000H   I:000000H   I:00007FH   000025H   DATA
+C:000000H   C:000000H   C:00FFFFH   000010H   CONST
+I:000020H.0 I:000020H.0 I:00002FH.7 000000H.2 BIT
+I:000000H   I:000000H   I:0000FFH   000001H   IDATA
+
+
+MEMORY MAP OF MODULE:  .\BUILD\RELEASE\51MCU-BASKETTIMER (MAIN)
+
+
+START     STOP      LENGTH    ALIGN  RELOC    MEMORY CLASS   SEGMENT NAME
+=========================================================================
+
+* * * * * * * * * * *   D A T A   M E M O R Y   * * * * * * * * * * * * *
+000000H   000007H   000008H   ---    AT..     DATA           "REG BANK 0"
+000008H   00001FH   000018H   BYTE   UNIT     DATA           ?DT?MAIN
+000020H.0 000020H.1 000000H.2 BIT    UNIT     BIT            ?BI?MAIN
+000020H.2 000020H   000000H.6 ---    ---      **GAP**
+000021H   000025H   000005H   BYTE   UNIT     DATA           _DATA_GROUP_
+000026H   000026H   000001H   BYTE   UNIT     IDATA          ?STACK
+
+* * * * * * * * * * *   C O D E   M E M O R Y   * * * * * * * * * * * * *
+000000H   000002H   000003H   ---    OFFS..   CODE           ?CO??C_STARTUP?0
+000003H   000008H   000006H   BYTE   UNIT     CODE           ?PR?RESET?MAIN
+000009H   00000AH   000002H   ---    ---      **GAP**
+00000BH   00000DH   000003H   BYTE   OFFS..   CODE           ?MAIN?0000B
+00000EH   0000B9H   0000ACH   BYTE   UNIT     CODE           ?PR?LOAD?MAIN
+0000BAH   00011AH   000061H   BYTE   UNIT     CODE           ?PR?LEDSCAN?MAIN
+00011BH   000178H   00005EH   BYTE   UNIT     CODE           ?PR?INTERRUPTTIMER0?MAIN
+000179H   0001C9H   000051H   BYTE   UNIT     CODE           ?PR?COUNT?MAIN
+0001CAH   00021AH   000051H   BYTE   UNIT     CODE           ?PR?KEYSCAN?MAIN
+00021BH   000259H   00003FH   BYTE   UNIT     CODE           ?PR?KEYDRIVER?MAIN
+00025AH   000288H   00002FH   BYTE   UNIT     CODE           ?C_INITSEG
+000289H   0002AAH   000022H   BYTE   UNIT     CODE           ?C?LIB_CODE
+0002ABH   0002C8H   00001EH   BYTE   UNIT     CODE           ?PR?MAIN?MAIN
+0002C9H   0002CBH   000003H   BYTE   UNIT     CODE           ?PR?STARTBUZZ?MAIN
+0002CCH   0002DBH   000010H   BYTE   UNIT     CONST          ?CO?MAIN
+0002DCH   0007FFH   000524H   ---    ---      **GAP**
+000800H   0008DCH   0000DDH   BYTE   UNIT     CODE           ?PR?ALL?MAIN
+0008DDH   000988H   0000ACH   ---    ---      **GAP**
+000989H   000A14H   00008CH   BYTE   UNIT     CODE           ?C_C51STARTUP
+
+LX51 LINKER/LOCATER V4.66.100.0                                                       12/23/2023  15:26:00  PAGE 2
+
+
+
+
+OVERLAY MAP OF MODULE:   .\BUILD\RELEASE\51MCU-BASKETTIMER (MAIN)
+
+
+FUNCTION/MODULE              BIT_GROUP   DATA_GROUP 
+--> CALLED FUNCTION/MODULE  START  STOP  START  STOP
+====================================================
+INTERRUPTTIMER0/MAIN        ----- -----  ----- -----
+  +--> LEDSCAN/MAIN
+  +--> KEYSCAN/MAIN
+  +--> COUNT/MAIN
+
+LEDSCAN/MAIN                ----- -----  ----- -----
+
+KEYSCAN/MAIN                ----- -----  ----- -----
+
+COUNT/MAIN                  ----- -----  0021H 0022H
+  +--> ALL/MAIN
+
+ALL/MAIN                    ----- -----  0023H 0024H
+  +--> STARTBUZZ/MAIN
+
+STARTBUZZ/MAIN              ----- -----  ----- -----
+
+*** NEW ROOT **************
+
+?C_C51STARTUP               ----- -----  ----- -----
+  +--> MAIN/MAIN
+  +--> ?C_INITSEG
+
+MAIN/MAIN                   ----- -----  ----- -----
+  +--> LOAD/MAIN
+  +--> KEYDRIVER/MAIN
+
+LOAD/MAIN                   ----- -----  ----- -----
+
+KEYDRIVER/MAIN              ----- -----  0025H 0025H
+  +--> RESET/MAIN
+
+RESET/MAIN                  ----- -----  ----- -----
+  +--> LOAD/MAIN
+
+?C_INITSEG                  ----- -----  ----- -----
+
+
+
+PUBLIC SYMBOLS OF MODULE:  .\BUILD\RELEASE\51MCU-BASKETTIMER (MAIN)
+
+
+      VALUE       CLASS    TYPE      PUBLIC SYMBOL NAME
+      =================================================
+      00000000H   NUMBER   ---       ?C?CODESEG
+      01000289H   CODE     ---       ?C?SCDIV
+      00000000H   NUMBER   ---       ?C?XDATASEG
+      010009D0H   CODE     ---       ?C_START
+      01000000H   CODE     ---       ?C_STARTUP
+      01000800H   CODE     ---       all
+      01000179H   CODE     ---       Count
+      00000013H   DATA     CHAR      High
+      0100011BH   CODE     ---       InterruptTimer0
+      0100021BH   CODE     ---       KeyDriver
+      010001CAH   CODE     ---       KeyScan
+      0000001CH   DATA     ---       KeySta
+      00000015H   DATA     ---       LedBuff
+LX51 LINKER/LOCATER V4.66.100.0                                                       12/23/2023  15:26:00  PAGE 3
+
+
+      010002CCH   CONST    ---       LedChar
+      010000BAH   CODE     ---       LedScan
+      0100000EH   CODE     ---       Load
+      0000001BH   DATA     CHAR      Low
+      010002ABH   CODE     ---       main
+      00000014H   DATA     CHAR      Mid
+      00000020H.1 BIT      BIT       Refresh
+      01000003H   CODE     ---       Reset
+      00000020H.0 BIT      BIT       RunFLag
+      010002C9H   CODE     ---       StartBuzz
+
+
+
+SYMBOL TABLE OF MODULE:  .\BUILD\RELEASE\51MCU-BASKETTIMER (MAIN)
+
+      VALUE       REP       CLASS    TYPE      SYMBOL NAME
+      ====================================================
+      ---         MODULE    ---      ---       MAIN
+      0000001CH   PUBLIC    DATA     ---       KeySta
+      00000020H.1 PUBLIC    BIT      BIT       Refresh
+      0000001BH   PUBLIC    DATA     CHAR      Low
+      00000015H   PUBLIC    DATA     ---       LedBuff
+      00000014H   PUBLIC    DATA     CHAR      Mid
+      00000020H.0 PUBLIC    BIT      BIT       RunFLag
+      00000013H   PUBLIC    DATA     CHAR      High
+      010002CCH   PUBLIC    CONST    ---       LedChar
+      0100011BH   PUBLIC    CODE     ---       InterruptTimer0
+      010002C9H   PUBLIC    CODE     ---       StartBuzz
+      01000800H   PUBLIC    CODE     ---       all
+      010000BAH   PUBLIC    CODE     ---       LedScan
+      010001CAH   PUBLIC    CODE     ---       KeyScan
+      0100021BH   PUBLIC    CODE     ---       KeyDriver
+      01000179H   PUBLIC    CODE     ---       Count
+      01000003H   PUBLIC    CODE     ---       Reset
+      0100000EH   PUBLIC    CODE     ---       Load
+      010002ABH   PUBLIC    CODE     ---       main
+
+      010002ABH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      0100000EH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000003H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000179H   BLOCK     CODE     ---       LVL=0
+      01000179H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000021H   SYMBOL    DATA     VOID      i
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      0100021BH   BLOCK     CODE     ---       LVL=0
+      0100021BH   BLOCK     CODE     NEAR LAB  LVL=1
+      00000025H   SYMBOL    DATA     VOID      i
+      00000008H   SYMBOL    DATA     VOID      backup
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      010001CAH   BLOCK     CODE     ---       LVL=0
+      010001CAH   BLOCK     CODE     NEAR LAB  LVL=1
+      00000007H   SYMBOL    DATA     VOID      i
+      0000000CH   SYMBOL    DATA     VOID      keybuf
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+LX51 LINKER/LOCATER V4.66.100.0                                                       12/23/2023  15:26:00  PAGE 4
+
+
+
+      010000BAH   BLOCK     CODE     ---       LVL=0
+      010000BAH   BLOCK     CODE     NEAR LAB  LVL=1
+      00000010H   SYMBOL    DATA     VOID      i
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000800H   BLOCK     CODE     ---       LVL=0
+      01000800H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000023H   SYMBOL    DATA     VOID      x
+      00000024H   SYMBOL    DATA     VOID      i
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      010002C9H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      0100011BH   BLOCK     CODE     ---       LVL=0
+      01000138H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000011H   SYMBOL    DATA     VOID      tmr2ms
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      ---         MODULE    ---      ---       ?C_STARTUP
+      01000000H   PUBLIC    CODE     ---       ?C_STARTUP
+
+      ---         MODULE    ---      ---       ?C?SCDIV
+      01000289H   PUBLIC    CODE     ---       ?C?SCDIV
+
+      ---         MODULE    ---      ---       ?C_INIT
+      010009D0H   PUBLIC    CODE     ---       ?C_START
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0391H BYTE (44%) *
+******************************************************************************
+
+Program Size: data=38.2 xdata=0 const=16 code=1075
+LX51 RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
