@@ -1,0 +1,10 @@
+# 忽略.vscode文件夹
+.vscode/
+
+# 忽略logs目录
+logs/
+
+# 忽略所有.log文件
+*.log
+# 忽略构建生成
+build\Release
