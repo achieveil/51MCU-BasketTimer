@@ -37,6 +37,7 @@ void RefreshOnce();
 void Warning();
 void Load();
 void StartBuzz();
+void DelayHalfSecond();
 void StopWatchAction();
 void StopWatchCount();
 void StopWatchDisplay();
@@ -104,7 +105,11 @@ void LowCount()
         Low--;
     } else if (!(High == 0 && Mid < 24)) {
         Low = 24;
-    }
+        StartBuzz();
+        DelayHalfSecond();
+        BUZZ = 1; // 关闭蜂鸣器
+    }// 当 Low 变为 0 时，启动蜂鸣器响0.5秒
+   
 }
 
 // 按键驱动函数，检测按键动作
@@ -319,6 +324,12 @@ void StartBuzz()
 {
     BUZZ = ~BUZZ;
 }
+void DelayHalfSecond()
+{
+    unsigned int delayCount;
+    
+}
+
 // 秒表启停函数
 void StopWatchAction()
 {
@@ -331,19 +342,14 @@ void StopWatchAction()
 // T0中断服务函数，完成数码管、按键扫描与秒表计数
 void InterruptTimer0() interrupt 1
 {
-    static int count = 0; // 蜂鸣器循环计数
+    //static int count = 0; // 蜂鸣器循环计数
 
     static unsigned int tmr2ms = 0;
 
     TH0 = 0xF8; // 重新加载初值
     TL0 = 0xCD;
     KeyScan(); // 按键扫描
-    /*if (Low <= 0) {
-        if (count < 50)
-            StartBuzz();
-        if (Mid < 24 && High == 0)
-            count++;
-    }*/
+    
     // 定时2ms进行一次秒表计数
     tmr2ms++;
     if (tmr2ms >= 500) {
