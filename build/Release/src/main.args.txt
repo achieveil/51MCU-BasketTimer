@@ -1,1 +1,0 @@
-.\src\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\main.lst) INCDIR(../../../../../../Program Files (x86)/Keil_v5/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\main.o)
