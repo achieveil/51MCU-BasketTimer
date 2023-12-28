@@ -13,7 +13,7 @@ VScode和[EIDE插件](https://marketplace.visualstudio.com/items?itemName=CL.eid
 
 ```powershell
 git clone https://github.com/achieveil/KingST-51MCU-BasketTimer.git
-cd 51MCU-BasketTimer
+cd KingST-51MCU-BasketTimer
 code .
 ```
 
