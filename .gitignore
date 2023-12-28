@@ -7,4 +7,17 @@ logs/
 # 忽略所有.log文件
 *.log
 # 忽略构建生成
-build\Release
+build/Release
+build/Release/51MCU-BASKETTIMER
+build/Release/51MCU-BasketTimer.hex
+build/Release/51MCU-BasketTimer.lnp
+build/Release/51MCU-BasketTimer.map
+build/Release/51MCU-BasketTimer.map.view
+build/Release/51MCU-BasketTimer.objlist
+build/Release/builder.params
+build/Release/builder.params.old
+build/Release/compile_commands.json
+build/Release/ref.json
+build/Release/src/main.args.txt
+build/Release/src/main.lst
+build/Release/src/main.o
