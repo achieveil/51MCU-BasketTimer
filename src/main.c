@@ -77,7 +77,7 @@ void Load()
 void Reset()
 {
     Low = 24;
-    Load(); // 确保暂停时可以讲24复位
+    Load(); // 确保暂停时可以将24复位
 }
 
 // 秒表计数函数，每隔1s调用一次进行秒表计数累加
@@ -360,7 +360,7 @@ void InterruptTimer0() interrupt 1
     TL0 = 0xCD;
     LedScan(); // 数码管扫描显示
     KeyScan(); // 按键扫描
-    // 定时10ms进行一次秒表计数
+    // 定时2ms进行一次秒表计数
     tmr2ms++;
     if (tmr2ms >= 500) {
         tmr2ms = 0;
