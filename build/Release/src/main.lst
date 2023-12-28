@@ -1,11 +1,11 @@
-C51 COMPILER V9.60.7.0   MAIN                                                              12/23/2023 15:27:54 PAGE 1   
+C51 COMPILER V9.60.7.0   MAIN                                                              12/28/2023 12:40:37 PAGE 1   
 
 
 C51 COMPILER V9.60.7.0, COMPILATION OF MODULE MAIN
 OBJECT MODULE PLACED IN .\build\Release\src\main.o
 COMPILER INVOKED BY: c:\Program Files (x86)\Keil_v5\C51\BIN\C51.exe .\SRC\MAIN.C OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(
-                    -.\build\Release\src\main.lst) INCDIR(../../../../../../../Program Files (x86)/Keil_v5/C51/INC;src) DEFINE(__UVISION_VERS
-                    -ION=526) OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\main.o)
+                    -.\build\Release\src\main.lst) INCDIR(../../../../../../Program Files (x86)/Keil_v5/C51/INC;src) DEFINE(__UVISION_VERSION
+                    -=526) OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\main.o)
 
 line level    source
 
@@ -24,415 +24,413 @@ line level    source
   13          sbit KEY3 = P2 ^ 6;
   14          sbit KEY4 = P2 ^ 7;
   15          
-  16          
-  17          /**
-  18           * @author achieveil,atnhaoyang
-  19           * @date 2023/12/22
-  20           */
-  21          
-  22          unsigned char code LedChar[] = { // Êï∞Á†ÅÁÆ°ÊòæÁ§∫Â≠óÁ¨¶ËΩ¨Êç¢Ë°®
-  23              0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x92, 0x82, 0xF8,
-  24              0x80, 0x90, 0x88, 0x83, 0xC6, 0xA1, 0x86, 0x8E};
-  25          unsigned char LedBuff[6] = { // Êï∞Á†ÅÁÆ°ÊòæÁ§∫ÁºìÂÜ≤Âå∫
-  26              0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
-  27          unsigned char KeySta[4] = { // ÊåâÈîÆÂΩìÂâçÁä∂ÊÄÅ
-  28              1, 1, 1, 1};
-  29          
-  30          bit RunFLag      = 0;  // ÁßíË°®ËøêË°åÊ†áÂøó
-  31          bit Refresh      = 1;  // ÁßíË°®ËÆ°Êï∞Âà∑Êñ∞Ê†áÂøó
-  32          signed char Low  = 24; // ‰Ωé2‰ΩçÊòæÁ§∫24ÁßíËÆ°Êó∂Ââ©‰Ωô
-  33          signed char Mid  = 0;  // ‰∏≠Èó¥2‰ΩçÊòæÁ§∫ËÆ°Êó∂Ââ©‰ΩôÁßíÊï∞
-  34          signed char High = 12; // 6‰ΩçÊï∞Á†ÅÁÆ°ÁöÑÈ´ò2‰ΩçÊòæÁ§∫ËÆ°Êó∂Ââ©‰ΩôÂàÜÈíüÊï∞
-  35          
-  36          void Load();
-  37          void KeyDriver();
-  38          void all();
-  39          void Reset();
-  40          void StartBuzz();
-  41          
-  42          void main()
-  43          {
-  44   1          EA    = 1; // ÂºÄÊÄª‰∏≠Êñ≠
-  45   1          ENLED = 0; // ‰ΩøËÉΩÈÄâÊã©Êï∞Á†ÅÁÆ°
-  46   1          ADDR3 = 1;
-  47   1          TMOD  = 0x01;
-  48   1          TH0   = 0xF8; // T0ÂÆöÊó∂2ms
-  49   1          TL0   = 0xCD;
-  50   1          ET0   = 1;
-  51   1          TR0   = 1;
-  52   1      
-  53   1          P2 = 0xF7; // P2.3ÁΩÆ0ÔºåÈÄâÊã©Á¨¨1Ë°åÊåâÈîÆ‰Ωú‰∏∫Áã¨Á´ãÊåâÈîÆ
-C51 COMPILER V9.60.7.0   MAIN                                                              12/23/2023 15:27:54 PAGE 2   
+  16          /**
+  17           * @author achieveil,atnhaoyang
+  18           * @date 2023/12/22
+  19           */
+  20          
+  21          unsigned char code LedChar[] = { //  ˝¬Îπ‹œ‘ æ◊÷∑˚◊™ªª±Ì
+  22              0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x92, 0x82, 0xF8,
+  23              0x80, 0x90, 0x88, 0x83, 0xC6, 0xA1, 0x86, 0x8E};
+  24          unsigned char LedBuff[6]     = { //  ˝¬Îπ‹œ‘ æª∫≥Â«¯
+  25              0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
+  26          unsigned char KeySta[4]      = { // ∞¥º¸µ±«∞◊¥Ã¨
+  27              1, 1, 1, 1};
+  28          
+  29          bit RunFLag      = 0;  // √Î±Ì‘À––±Í÷æ
+  30          bit Refresh      = 1;  // √Î±Ìº∆ ˝À¢–¬±Í÷æ
+  31          signed char Low  = 24; // µÕ2Œªœ‘ æ24√Îº∆ ± £”‡
+  32          signed char Mid  = 0;  // ÷–º‰2Œªœ‘ æº∆ ± £”‡√Î ˝
+  33          signed char High = 12; // 6Œª ˝¬Îπ‹µƒ∏ﬂ2Œªœ‘ æº∆ ± £”‡∑÷÷” ˝
+  34          
+  35          void Load();
+  36          void KeyDriver();
+  37          void all();
+  38          void Reset();
+  39          void StartBuzz();
+  40          
+  41          void main()
+  42          {
+  43   1          EA    = 1; // ø™◊‹÷–∂œ
+  44   1          ENLED = 0; //  πƒ‹—°‘Ò ˝¬Îπ‹
+  45   1          ADDR3 = 1;
+  46   1          TMOD  = 0x01;
+  47   1          TH0   = 0xF8; // T0∂® ±2ms
+  48   1          TL0   = 0xCD;
+  49   1          ET0   = 1;
+  50   1          TR0   = 1;
+  51   1      
+  52   1          P2 = 0xF7; // P2.3÷√0£¨—°‘Òµ⁄1––∞¥º¸◊˜Œ™∂¿¡¢∞¥º¸
+  53   1      
+C51 COMPILER V9.60.7.0   MAIN                                                              12/28/2023 12:40:37 PAGE 2   
 
-  54   1      
-  55   1          while (1) {
-  56   2              Load();
-  57   2              KeyDriver(); // Ë∞ÉÁî®ÊåâÈîÆÈ©±Âä®ÂáΩÊï∞
-  58   2          }
-  59   1      }
-  60          
-  61          // Â∞ÜÊï∞Á†ÅÁÆ°ÁöÑÂÄºÂä†ËΩΩÂà∞ÁºìÂÜ≤Âå∫
-  62          void Load()
-  63          {
-  64   1          // 24ÈÉ®ÂàÜÂä†ËΩΩÂà∞‰Ωé2‰Ωç
-  65   1          LedBuff[0] = LedChar[Low % 10];
-  66   1          LedBuff[1] = LedChar[Low / 10];
-  67   1          // ÁßíÈÉ®ÂàÜÂä†ËΩΩÂà∞‰∏≠2‰Ωç
-  68   1          LedBuff[2] = LedChar[Mid % 10];
-  69   1          LedBuff[3] = LedChar[Mid / 10];
-  70   1          // ÂàÜÈÉ®ÂàÜÂä†ËΩΩÂà∞È´ò2‰Ωç
-  71   1          LedBuff[4] = LedChar[High % 10];
-  72   1          LedBuff[5] = LedChar[High / 10];
-  73   1      
-  74   1          LedBuff[2] &= 0x7F; // ÁÇπ‰∫ÆÂ∞èÊï∞ÁÇπ
-  75   1      }
-  76          
-  77          // ÁßíË°®Â§ç‰ΩçÂáΩÊï∞
-  78          void Reset()
-  79          {
-  80   1          Low = 24;
-  81   1          Load(); // Á°Æ‰øùÊöÇÂÅúÊó∂ÂèØ‰ª•ËÆ≤24Â§ç‰Ωç
-  82   1      }
-  83          
-  84          // ÁßíË°®ËÆ°Êï∞ÂáΩÊï∞ÔºåÊØèÈöî1sË∞ÉÁî®‰∏ÄÊ¨°ËøõË°åÁßíË°®ËÆ°Êï∞Á¥ØÂä†
-  85          void Count()
-  86          {
-  87   1          unsigned int i = 0;
-  88   1          if (RunFLag) // ÂΩìÂ§Ñ‰∫éËøêË°åÁä∂ÊÄÅÊó∂ÈÄíÂ¢ûËÆ°Êï∞ÂÄº
-  89   1          {
-  90   2              Low--;        // 24ÈÉ®ÂàÜ-1
-  91   2              if (Low <= 0) // 24ÈÉ®ÂàÜ‰∏∫0
-  92   2              {
-  93   3                  if (Mid >= 24 || High > 0)
-  94   3                      Low = 24;
-  95   3                  else if (Mid < 24)
-  96   3                      Low = 0;
-  97   3              }
-  98   2              if (Mid <= 0) // ‰∏≠Èó¥‰∏§‰Ωç‰∏∫0ÔºåÈáçÊñ∞ËÆ°Êó∂ÔºåÈ´ò‰∏§‰ΩçÂáè1
-  99   2              {
- 100   3                  Mid = 60;
- 101   3                  High--;
- 102   3              }
- 103   2              Mid--;
- 104   2              if (High == 0 && Mid == 0) // ËÆ°Êó∂ÁªìÊùüÔºåÂÖ®ÈÉ®ÁÇπ‰∫Æ
- 105   2              {
- 106   3                  all();
- 107   3              }
- 108   2          }
- 109   1      }
- 110          
- 111          // ÊåâÈîÆÈ©±Âä®ÂáΩÊï∞ÔºåÊ£ÄÊµãÊåâÈîÆÂä®‰Ωú
- 112          void KeyDriver()
- 113          {
- 114   1          unsigned char i;
- 115   1          static unsigned char backup[4] = {1, 1, 1, 1};
-C51 COMPILER V9.60.7.0   MAIN                                                              12/23/2023 15:27:54 PAGE 3   
+  54   1          while (1) {
+  55   2              Load();
+  56   2              KeyDriver(); // µ˜”√∞¥º¸«˝∂Ø∫Ø ˝
+  57   2          }
+  58   1      }
+  59          
+  60          // Ω´ ˝¬Îπ‹µƒ÷µº”‘ÿµΩª∫≥Â«¯
+  61          void Load()
+  62          {
+  63   1          // 24≤ø∑÷º”‘ÿµΩµÕ2Œª
+  64   1          LedBuff[0] = LedChar[Low % 10];
+  65   1          LedBuff[1] = LedChar[Low / 10];
+  66   1          // √Î≤ø∑÷º”‘ÿµΩ÷–2Œª
+  67   1          LedBuff[2] = LedChar[Mid % 10];
+  68   1          LedBuff[3] = LedChar[Mid / 10];
+  69   1          // ∑÷≤ø∑÷º”‘ÿµΩ∏ﬂ2Œª
+  70   1          LedBuff[4] = LedChar[High % 10];
+  71   1          LedBuff[5] = LedChar[High / 10];
+  72   1      
+  73   1          LedBuff[2] &= 0x7F; // µ„¡¡–° ˝µ„
+  74   1      }
+  75          
+  76          // √Î±Ì∏¥Œª∫Ø ˝
+  77          void Reset()
+  78          {
+  79   1          Low = 24;
+  80   1          Load(); // »∑±£‘›Õ£ ±ø…“‘Ω≤24∏¥Œª
+  81   1      }
+  82          
+  83          // √Î±Ìº∆ ˝∫Ø ˝£¨√ø∏Ù1sµ˜”√“ª¥ŒΩ¯––√Î±Ìº∆ ˝¿€º”
+  84          void Count()
+  85          {
+  86   1          unsigned int i = 0;
+  87   1          if (RunFLag) // µ±¥¶”⁄‘À––◊¥Ã¨ ±µ›‘ˆº∆ ˝÷µ
+  88   1          {
+  89   2              Low--;        // 24≤ø∑÷-1
+  90   2              if (Low <= 0) // 24≤ø∑÷Œ™0
+  91   2              {
+  92   3                  if (Mid >= 24 || High > 0)
+  93   3                      Low = 24;
+  94   3                  else if (Mid < 24)
+  95   3                      Low = 0;
+  96   3              }
+  97   2              if (Mid <= 0) // ÷–º‰¡ΩŒªŒ™0£¨÷ÿ–¬º∆ ±£¨∏ﬂ¡ΩŒªºı1
+  98   2              {
+  99   3                  Mid = 60;
+ 100   3                  High--;
+ 101   3              }
+ 102   2              Mid--;
+ 103   2              if (High == 0 && Mid == 0) // º∆ ±Ω· ¯£¨»´≤øµ„¡¡
+ 104   2              {
+ 105   3                  all();
+ 106   3              }
+ 107   2          }
+ 108   1      }
+ 109          
+ 110          // ∞¥º¸«˝∂Ø∫Ø ˝£¨ºÏ≤‚∞¥º¸∂Ø◊˜
+ 111          void KeyDriver()
+ 112          {
+ 113   1          unsigned char i;
+ 114   1          static unsigned char backup[4] = {1, 1, 1, 1};
+ 115   1      
+C51 COMPILER V9.60.7.0   MAIN                                                              12/28/2023 12:40:37 PAGE 3   
 
- 116   1      
- 117   1          for (i = 0; i < 4; i++) // Âæ™ÁéØÊ£ÄÊµã4‰∏™ÊåâÈîÆ
- 118   1          {
- 119   2              if (backup[i] != KeySta[i]) // Ê£ÄÊµãÊåâÈîÆÂä®‰Ωú
- 120   2              {
- 121   3                  if (backup[i] != 0) // ÊåâÈîÆÊåâ‰∏ãÊó∂ÊâßË°åÂä®‰Ωú
- 122   3                  {
- 123   4                      if (i == 1) // EscÈîÆÂ§ç‰ΩçÁßíË°®
- 124   4                          Reset();
- 125   4                      else if (i == 0) // ÂõûËΩ¶ÈîÆÂêØÂÅúÁßíË°®
- 126   4                          RunFLag = ~RunFLag;
- 127   4                  }
- 128   3                  backup[i] = KeySta[i]; // Âà∑Êñ∞Ââç‰∏ÄÊ¨°ÁöÑÂ§á‰ªΩÂÄº
- 129   3              }
- 130   2          }
- 131   1      }
- 132          
- 133          // ÊåâÈîÆÊâ´ÊèèÂáΩÊï∞
- 134          void KeyScan()
- 135          {
- 136   1          unsigned char i;
- 137   1          static unsigned char keybuf[4] = {// ÊåâÈîÆÊâ´ÊèèÁºìÂÜ≤Âå∫
- 138   1                                            0xFF, 0xFF, 0xFF, 0xFF};
- 139   1      
- 140   1          // ÊåâÈîÆÂÄºÁßªÂÖ•ÁºìÂÜ≤Âå∫
- 141   1          keybuf[0] = (keybuf[0] << 1) | KEY1;
- 142   1          keybuf[1] = (keybuf[1] << 1) | KEY2;
- 143   1          keybuf[2] = (keybuf[2] << 1) | KEY3;
- 144   1          keybuf[3] = (keybuf[3] << 1) | KEY4;
- 145   1      
- 146   1          // Ê∂àÊäñÂêéÊõ¥Êñ∞ÊåâÈîÆÁä∂ÊÄÅ
- 147   1          for (i = 0; i < 2; i++) {
- 148   2              if (keybuf[i] == 0x00) { // ËøûÁª≠8Ê¨°Êâ´ÊèèÂÄº‰∏∫0ÔºåÂç≥16msÂÜÖÈÉΩÊòØÊåâ‰∏ãÁä∂ÊÄÅÊó∂ÔºåÂèØËÆ§‰∏∫Ê
-             -åâÈîÆÂ∑≤Á®≥ÂÆöÁöÑÊåâ‰∏ã
- 149   3                  KeySta[i] = 0;
- 150   3              } else if (keybuf[i] == 0xFF) { // ËøûÁª≠8Ê¨°Êâ´ÊèèÂÄº‰∏∫1ÔºåÂç≥16msÂÜÖÈÉΩÊòØÂºπËµ∑Áä∂ÊÄÅÊó∂ÔºåÂèØ
-             -ËÆ§‰∏∫ÊåâÈîÆÂ∑≤Á®≥ÂÆöÁöÑÂºπËµ∑
- 151   3                  KeySta[i] = 1;
- 152   3              }
- 153   2          }
- 154   1      }
- 155          
- 156          // Êï∞Á†ÅÁÆ°Âä®ÊÄÅÊâ´ÊèèÂà∑Êñ∞ÂáΩÊï∞ÔºåÈúÄÂú®ÂÆöÊó∂‰∏≠Êñ≠‰∏≠Ë∞ÉÁî®
- 157          void LedScan()
- 158          {
- 159   1          static unsigned char i = 0; // Âä®ÊÄÅÊâ´ÊèèÁ¥¢Âºï
- 160   1      
- 161   1          P0 = 0xFF; // ÂÖ≥Èó≠ÊâÄÊúâÊÆµÈÄâ‰ΩçÔºåÊòæÁ§∫Ê∂àÈöê
- 162   1          switch (i) {
- 163   2              case 0:
- 164   2                  ADDR2 = 0;
- 165   2                  ADDR1 = 0;
- 166   2                  ADDR0 = 0;
- 167   2                  i++;
- 168   2                  P0 = LedBuff[0];
- 169   2                  break;
- 170   2              case 1:
- 171   2                  ADDR2 = 0;
- 172   2                  ADDR1 = 0;
- 173   2                  ADDR0 = 1;
- 174   2                  i++;
- 175   2                  P0 = LedBuff[1];
-C51 COMPILER V9.60.7.0   MAIN                                                              12/23/2023 15:27:54 PAGE 4   
+ 116   1          for (i = 0; i < 4; i++) // —≠ª∑ºÏ≤‚4∏ˆ∞¥º¸
+ 117   1          {
+ 118   2              if (backup[i] != KeySta[i]) // ºÏ≤‚∞¥º¸∂Ø◊˜
+ 119   2              {
+ 120   3                  if (backup[i] != 0) // ∞¥º¸∞¥œ¬ ±÷¥––∂Ø◊˜
+ 121   3                  {
+ 122   4                      if (i == 1) // Escº¸∏¥Œª√Î±Ì
+ 123   4                          Reset();
+ 124   4                      else if (i == 0) // ªÿ≥µº¸∆ÙÕ£√Î±Ì
+ 125   4                          RunFLag = ~RunFLag;
+ 126   4                  }
+ 127   3                  backup[i] = KeySta[i]; // À¢–¬«∞“ª¥Œµƒ±∏∑›÷µ
+ 128   3              }
+ 129   2          }
+ 130   1      }
+ 131          
+ 132          // ∞¥º¸…®√Ë∫Ø ˝
+ 133          void KeyScan()
+ 134          {
+ 135   1          unsigned char i;
+ 136   1          static unsigned char keybuf[4] = {// ∞¥º¸…®√Ëª∫≥Â«¯
+ 137   1                                            0xFF, 0xFF, 0xFF, 0xFF};
+ 138   1      
+ 139   1          // ∞¥º¸÷µ“∆»Îª∫≥Â«¯
+ 140   1          keybuf[0] = (keybuf[0] << 1) | KEY1;
+ 141   1          keybuf[1] = (keybuf[1] << 1) | KEY2;
+ 142   1          keybuf[2] = (keybuf[2] << 1) | KEY3;
+ 143   1          keybuf[3] = (keybuf[3] << 1) | KEY4;
+ 144   1      
+ 145   1          // œ˚∂∂∫Û∏¸–¬∞¥º¸◊¥Ã¨
+ 146   1          for (i = 0; i < 2; i++) {
+ 147   2              if (keybuf[i] == 0x00) { // ¡¨–¯8¥Œ…®√Ë÷µŒ™0£¨º¥16msƒ⁄∂º «∞¥œ¬◊¥Ã¨ ±£¨ø…»œŒ™∞¥º¸“—Œ»∂®µƒ∞¥œ¬
+ 148   3                  KeySta[i] = 0;
+ 149   3              } else if (keybuf[i] == 0xFF) { // ¡¨–¯8¥Œ…®√Ë÷µŒ™1£¨º¥16msƒ⁄∂º «µØ∆◊¥Ã¨ ±£¨ø…»œŒ™∞¥º¸“—Œ»∂®µƒµØ∆
+             -
+ 150   3                  KeySta[i] = 1;
+ 151   3              }
+ 152   2          }
+ 153   1      }
+ 154          
+ 155          //  ˝¬Îπ‹∂ØÃ¨…®√ËÀ¢–¬∫Ø ˝£¨–Ë‘⁄∂® ±÷–∂œ÷–µ˜”√
+ 156          void LedScan()
+ 157          {
+ 158   1          static unsigned char i = 0; // ∂ØÃ¨…®√ËÀ˜“˝
+ 159   1      
+ 160   1          P0 = 0xFF; // πÿ±’À˘”–∂Œ—°Œª£¨œ‘ æœ˚“˛
+ 161   1          switch (i) {
+ 162   2              case 0:
+ 163   2                  ADDR2 = 0;
+ 164   2                  ADDR1 = 0;
+ 165   2                  ADDR0 = 0;
+ 166   2                  i++;
+ 167   2                  P0 = LedBuff[0];
+ 168   2                  break;
+ 169   2              case 1:
+ 170   2                  ADDR2 = 0;
+ 171   2                  ADDR1 = 0;
+ 172   2                  ADDR0 = 1;
+ 173   2                  i++;
+ 174   2                  P0 = LedBuff[1];
+ 175   2                  break;
+ 176   2              case 2:
+C51 COMPILER V9.60.7.0   MAIN                                                              12/28/2023 12:40:37 PAGE 4   
 
- 176   2                  break;
- 177   2              case 2:
- 178   2                  ADDR2 = 0;
- 179   2                  ADDR1 = 1;
- 180   2                  ADDR0 = 0;
- 181   2                  i++;
- 182   2                  P0 = LedBuff[2];
- 183   2                  break;
- 184   2              case 3:
- 185   2                  ADDR2 = 0;
- 186   2                  ADDR1 = 1;
- 187   2                  ADDR0 = 1;
- 188   2                  i++;
- 189   2                  P0 = LedBuff[3];
- 190   2                  break;
- 191   2              case 4:
- 192   2                  ADDR2 = 1;
- 193   2                  ADDR1 = 0;
- 194   2                  ADDR0 = 0;
- 195   2                  i++;
- 196   2                  P0 = LedBuff[4];
- 197   2                  break;
- 198   2              case 5:
- 199   2                  ADDR2 = 1;
- 200   2                  ADDR1 = 0;
- 201   2                  ADDR0 = 1;
- 202   2                  i     = 0;
- 203   2                  P0    = LedBuff[5];
- 204   2                  break;
- 205   2              default:
- 206   2                  break;
- 207   2          }
- 208   1      }
- 209          void all()
- 210          {
- 211   1          unsigned char x = 0;
- 212   1          unsigned char i = 0;
- 213   1          while (1) {
- 214   2              P0 = 0xFF;
- 215   2              switch (x) {
- 216   3                  // ÁÇπ‰∫ÆÊï∞Á†ÅÁÆ°
- 217   3                  case 0:
- 218   3                      ADDR3 = 1;
- 219   3                      ADDR2 = 0;
- 220   3                      ADDR1 = 0;
- 221   3                      ADDR0 = 0;
- 222   3                      x++;
- 223   3                      P0 = LedChar[0];
- 224   3                      break;
- 225   3                  case 1:
- 226   3                      ADDR3 = 1;
- 227   3                      ADDR2 = 0;
- 228   3                      ADDR1 = 0;
- 229   3                      ADDR0 = 1;
- 230   3                      x++;
- 231   3                      P0 = LedChar[0];
- 232   3                      break;
- 233   3                  case 2:
- 234   3                      ADDR3 = 1;
- 235   3                      ADDR2 = 0;
- 236   3                      ADDR1 = 1;
- 237   3                      ADDR0 = 0;
-C51 COMPILER V9.60.7.0   MAIN                                                              12/23/2023 15:27:54 PAGE 5   
+ 177   2                  ADDR2 = 0;
+ 178   2                  ADDR1 = 1;
+ 179   2                  ADDR0 = 0;
+ 180   2                  i++;
+ 181   2                  P0 = LedBuff[2];
+ 182   2                  break;
+ 183   2              case 3:
+ 184   2                  ADDR2 = 0;
+ 185   2                  ADDR1 = 1;
+ 186   2                  ADDR0 = 1;
+ 187   2                  i++;
+ 188   2                  P0 = LedBuff[3];
+ 189   2                  break;
+ 190   2              case 4:
+ 191   2                  ADDR2 = 1;
+ 192   2                  ADDR1 = 0;
+ 193   2                  ADDR0 = 0;
+ 194   2                  i++;
+ 195   2                  P0 = LedBuff[4];
+ 196   2                  break;
+ 197   2              case 5:
+ 198   2                  ADDR2 = 1;
+ 199   2                  ADDR1 = 0;
+ 200   2                  ADDR0 = 1;
+ 201   2                  i     = 0;
+ 202   2                  P0    = LedBuff[5];
+ 203   2                  break;
+ 204   2              default:
+ 205   2                  break;
+ 206   2          }
+ 207   1      }
+ 208          void all()
+ 209          {
+ 210   1          unsigned char x = 0;
+ 211   1          unsigned char i = 0;
+ 212   1          while (1) {
+ 213   2              P0 = 0xFF;
+ 214   2              switch (x) {
+ 215   3                  // µ„¡¡ ˝¬Îπ‹
+ 216   3                  case 0:
+ 217   3                      ADDR3 = 1;
+ 218   3                      ADDR2 = 0;
+ 219   3                      ADDR1 = 0;
+ 220   3                      ADDR0 = 0;
+ 221   3                      x++;
+ 222   3                      P0 = LedChar[0];
+ 223   3                      break;
+ 224   3                  case 1:
+ 225   3                      ADDR3 = 1;
+ 226   3                      ADDR2 = 0;
+ 227   3                      ADDR1 = 0;
+ 228   3                      ADDR0 = 1;
+ 229   3                      x++;
+ 230   3                      P0 = LedChar[0];
+ 231   3                      break;
+ 232   3                  case 2:
+ 233   3                      ADDR3 = 1;
+ 234   3                      ADDR2 = 0;
+ 235   3                      ADDR1 = 1;
+ 236   3                      ADDR0 = 0;
+ 237   3                      x++;
+ 238   3                      P0 = LedChar[0];
+C51 COMPILER V9.60.7.0   MAIN                                                              12/28/2023 12:40:37 PAGE 5   
 
- 238   3                      x++;
- 239   3                      P0 = LedChar[0];
- 240   3                      break;
- 241   3                  case 3:
- 242   3                      ADDR3 = 1;
- 243   3                      ADDR2 = 0;
- 244   3                      ADDR1 = 1;
- 245   3                      ADDR0 = 1;
- 246   3                      x++;
- 247   3                      P0 = LedChar[0];
- 248   3                      break;
- 249   3                  case 4:
- 250   3                      ADDR3 = 1;
- 251   3                      ADDR2 = 1;
- 252   3                      ADDR1 = 0;
- 253   3                      ADDR0 = 0;
- 254   3                      x++;
- 255   3                      P0 = LedChar[0];
- 256   3                      break;
- 257   3                  case 5:
- 258   3                      ADDR3 = 1;
- 259   3                      ADDR2 = 1;
- 260   3                      ADDR1 = 0;
- 261   3                      ADDR0 = 1;
- 262   3                      x++;
- 263   3                      P0 = LedChar[0];
- 264   3                      break;
- 265   3      
- 266   3                  // ÁÇπ‰∫ÆÂ∞èÁÅØ
- 267   3                  case 6:
- 268   3                      ADDR3 = 1;
- 269   3                      ADDR2 = 1;
- 270   3                      ADDR1 = 1;
- 271   3                      ADDR0 = 0;
- 272   3                      x++;
- 273   3                      P0 = 0x00;
- 274   3                      break;
- 275   3      
- 276   3                  // ÁÇπ‰∫ÆÁÇπÈòµ
- 277   3                  case 7:
- 278   3                      ADDR3 = 0;
- 279   3                      ADDR2 = 0;
- 280   3                      ADDR1 = 0;
- 281   3                      ADDR0 = 0;
- 282   3                      x++;
- 283   3                      P0 = 0x00;
- 284   3                      break;
- 285   3                  case 8:
- 286   3                      ADDR3 = 0;
- 287   3                      ADDR2 = 0;
- 288   3                      ADDR1 = 0;
- 289   3                      ADDR0 = 1;
- 290   3                      x++;
- 291   3                      P0 = 0x00;
- 292   3                      break;
- 293   3                  case 9:
- 294   3                      ADDR3 = 0;
- 295   3                      ADDR2 = 0;
- 296   3                      ADDR1 = 1;
- 297   3                      ADDR0 = 0;
- 298   3                      x++;
- 299   3                      P0 = 0x00;
-C51 COMPILER V9.60.7.0   MAIN                                                              12/23/2023 15:27:54 PAGE 6   
+ 239   3                      break;
+ 240   3                  case 3:
+ 241   3                      ADDR3 = 1;
+ 242   3                      ADDR2 = 0;
+ 243   3                      ADDR1 = 1;
+ 244   3                      ADDR0 = 1;
+ 245   3                      x++;
+ 246   3                      P0 = LedChar[0];
+ 247   3                      break;
+ 248   3                  case 4:
+ 249   3                      ADDR3 = 1;
+ 250   3                      ADDR2 = 1;
+ 251   3                      ADDR1 = 0;
+ 252   3                      ADDR0 = 0;
+ 253   3                      x++;
+ 254   3                      P0 = LedChar[0];
+ 255   3                      break;
+ 256   3                  case 5:
+ 257   3                      ADDR3 = 1;
+ 258   3                      ADDR2 = 1;
+ 259   3                      ADDR1 = 0;
+ 260   3                      ADDR0 = 1;
+ 261   3                      x++;
+ 262   3                      P0 = LedChar[0];
+ 263   3                      break;
+ 264   3      
+ 265   3                  // µ„¡¡–°µ∆
+ 266   3                  case 6:
+ 267   3                      ADDR3 = 1;
+ 268   3                      ADDR2 = 1;
+ 269   3                      ADDR1 = 1;
+ 270   3                      ADDR0 = 0;
+ 271   3                      x++;
+ 272   3                      P0 = 0x00;
+ 273   3                      break;
+ 274   3      
+ 275   3                  // µ„¡¡µ„’Û
+ 276   3                  case 7:
+ 277   3                      ADDR3 = 0;
+ 278   3                      ADDR2 = 0;
+ 279   3                      ADDR1 = 0;
+ 280   3                      ADDR0 = 0;
+ 281   3                      x++;
+ 282   3                      P0 = 0x00;
+ 283   3                      break;
+ 284   3                  case 8:
+ 285   3                      ADDR3 = 0;
+ 286   3                      ADDR2 = 0;
+ 287   3                      ADDR1 = 0;
+ 288   3                      ADDR0 = 1;
+ 289   3                      x++;
+ 290   3                      P0 = 0x00;
+ 291   3                      break;
+ 292   3                  case 9:
+ 293   3                      ADDR3 = 0;
+ 294   3                      ADDR2 = 0;
+ 295   3                      ADDR1 = 1;
+ 296   3                      ADDR0 = 0;
+ 297   3                      x++;
+ 298   3                      P0 = 0x00;
+ 299   3                      break;
+ 300   3                  case 10:
+C51 COMPILER V9.60.7.0   MAIN                                                              12/28/2023 12:40:37 PAGE 6   
 
- 300   3                      break;
- 301   3                  case 10:
- 302   3                      ADDR3 = 0;
- 303   3                      ADDR2 = 0;
- 304   3                      ADDR1 = 1;
- 305   3                      ADDR0 = 1;
- 306   3                      x++;
- 307   3                      P0 = 0x00;
- 308   3                      break;
- 309   3                  case 11:
- 310   3                      ADDR3 = 0;
- 311   3                      ADDR2 = 1;
- 312   3                      ADDR1 = 0;
- 313   3                      ADDR0 = 0;
- 314   3                      x++;
- 315   3                      P0 = 0x00;
- 316   3                      break;
- 317   3                  case 12:
- 318   3                      ADDR3 = 0;
- 319   3                      ADDR2 = 1;
- 320   3                      ADDR1 = 0;
- 321   3                      ADDR0 = 1;
- 322   3                      x++;
- 323   3                      P0 = 0x00;
- 324   3                      break;
- 325   3                  case 13:
- 326   3                      ADDR3 = 0;
- 327   3                      ADDR2 = 1;
- 328   3                      ADDR1 = 1;
- 329   3                      ADDR0 = 0;
- 330   3                      x++;
- 331   3                      P0 = 0x00;
- 332   3                      break;
- 333   3                  case 14:
- 334   3                      ADDR3 = 0;
- 335   3                      ADDR2 = 1;
- 336   3                      ADDR1 = 1;
- 337   3                      ADDR0 = 1;
- 338   3                      x     = 0;
- 339   3                      P0    = 0x00;
- 340   3                      break;
- 341   3                  default:
- 342   3                      break;
- 343   3              }
- 344   2              for (i = 0; i <= 200; i++)
- 345   2                  ;
- 346   2              StartBuzz();
- 347   2          }
- 348   1      }
- 349          
- 350          void StartBuzz()
- 351          {
- 352   1          BUZZ = ~BUZZ;
- 353   1      }
- 354          
- 355          // T0‰∏≠Êñ≠ÊúçÂä°ÂáΩÊï∞ÔºåÂÆåÊàêÊï∞Á†ÅÁÆ°„ÄÅÊåâÈîÆÊâ´Êèè‰∏éÁßíË°®ËÆ°Êï∞
- 356          void InterruptTimer0() interrupt 1
- 357          {
- 358   1          static unsigned int tmr2ms = 0;
- 359   1      
- 360   1          TH0 = 0xF8; // ÈáçÊñ∞Âä†ËΩΩÈáçËΩΩÂÄº
- 361   1          TL0 = 0xCD;
-C51 COMPILER V9.60.7.0   MAIN                                                              12/23/2023 15:27:54 PAGE 7   
+ 301   3                      ADDR3 = 0;
+ 302   3                      ADDR2 = 0;
+ 303   3                      ADDR1 = 1;
+ 304   3                      ADDR0 = 1;
+ 305   3                      x++;
+ 306   3                      P0 = 0x00;
+ 307   3                      break;
+ 308   3                  case 11:
+ 309   3                      ADDR3 = 0;
+ 310   3                      ADDR2 = 1;
+ 311   3                      ADDR1 = 0;
+ 312   3                      ADDR0 = 0;
+ 313   3                      x++;
+ 314   3                      P0 = 0x00;
+ 315   3                      break;
+ 316   3                  case 12:
+ 317   3                      ADDR3 = 0;
+ 318   3                      ADDR2 = 1;
+ 319   3                      ADDR1 = 0;
+ 320   3                      ADDR0 = 1;
+ 321   3                      x++;
+ 322   3                      P0 = 0x00;
+ 323   3                      break;
+ 324   3                  case 13:
+ 325   3                      ADDR3 = 0;
+ 326   3                      ADDR2 = 1;
+ 327   3                      ADDR1 = 1;
+ 328   3                      ADDR0 = 0;
+ 329   3                      x++;
+ 330   3                      P0 = 0x00;
+ 331   3                      break;
+ 332   3                  case 14:
+ 333   3                      ADDR3 = 0;
+ 334   3                      ADDR2 = 1;
+ 335   3                      ADDR1 = 1;
+ 336   3                      ADDR0 = 1;
+ 337   3                      x     = 0;
+ 338   3                      P0    = 0x00;
+ 339   3                      break;
+ 340   3                  default:
+ 341   3                      break;
+ 342   3              }
+ 343   2              for (i = 0; i <= 200; i++)
+ 344   2                  ;
+ 345   2              StartBuzz();
+ 346   2          }
+ 347   1      }
+ 348          
+ 349          void StartBuzz()
+ 350          {
+ 351   1          BUZZ = ~BUZZ;
+ 352   1      }
+ 353          
+ 354          // T0÷–∂œ∑˛ŒÒ∫Ø ˝£¨ÕÍ≥… ˝¬Îπ‹°¢∞¥º¸…®√Ë”Î√Î±Ìº∆ ˝
+ 355          void InterruptTimer0() interrupt 1
+ 356          {
+ 357   1          static unsigned int tmr2ms = 0;
+ 358   1      
+ 359   1          TH0 = 0xF8; // ÷ÿ–¬º”‘ÿ÷ÿ‘ÿ÷µ
+ 360   1          TL0 = 0xCD;
+ 361   1          LedScan(); //  ˝¬Îπ‹…®√Ëœ‘ æ
+ 362   1          KeyScan(); // ∞¥º¸…®√Ë
+C51 COMPILER V9.60.7.0   MAIN                                                              12/28/2023 12:40:37 PAGE 7   
 
- 362   1          LedScan(); // Êï∞Á†ÅÁÆ°Êâ´ÊèèÊòæÁ§∫
- 363   1          KeyScan(); // ÊåâÈîÆÊâ´Êèè
- 364   1          // ÂÆöÊó∂10msËøõË°å‰∏ÄÊ¨°ÁßíË°®ËÆ°Êï∞
- 365   1          tmr2ms++;
- 366   1          if (tmr2ms >= 500) {
- 367   2              tmr2ms = 0;
- 368   2              Count(); // Ë∞ÉÁî®ÁßíË°®ËÆ°Êï∞ÂáΩÊï∞
- 369   2          }
- 370   1      }
-C51 COMPILER V9.60.7.0   MAIN                                                              12/23/2023 15:27:54 PAGE 8   
+ 363   1          // ∂® ±10msΩ¯––“ª¥Œ√Î±Ìº∆ ˝
+ 364   1          tmr2ms++;
+ 365   1          if (tmr2ms >= 500) {
+ 366   2              tmr2ms = 0;
+ 367   2              Count(); // µ˜”√√Î±Ìº∆ ˝∫Ø ˝
+ 368   2          }
+ 369   1      }
+C51 COMPILER V9.60.7.0   MAIN                                                              12/28/2023 12:40:37 PAGE 8   
 
 ASSEMBLY LISTING OF GENERATED OBJECT CODE
 
 
              ; FUNCTION main (BEGIN)
+                                           ; SOURCE LINE # 41
                                            ; SOURCE LINE # 42
                                            ; SOURCE LINE # 43
-                                           ; SOURCE LINE # 44
 0000 D2AF              SETB    EA
-                                           ; SOURCE LINE # 45
+                                           ; SOURCE LINE # 44
 0002 C294              CLR     ENLED
-                                           ; SOURCE LINE # 46
+                                           ; SOURCE LINE # 45
 0004 D293              SETB    ADDR3
-                                           ; SOURCE LINE # 47
+                                           ; SOURCE LINE # 46
 0006 758901            MOV     TMOD,#01H
-                                           ; SOURCE LINE # 48
+                                           ; SOURCE LINE # 47
 0009 758CF8            MOV     TH0,#0F8H
-                                           ; SOURCE LINE # 49
+                                           ; SOURCE LINE # 48
 000C 758ACD            MOV     TL0,#0CDH
-                                           ; SOURCE LINE # 50
+                                           ; SOURCE LINE # 49
 000F D2A9              SETB    ET0
-                                           ; SOURCE LINE # 51
+                                           ; SOURCE LINE # 50
 0011 D28C              SETB    TR0
-                                           ; SOURCE LINE # 53
+                                           ; SOURCE LINE # 52
 0013 75A0F7            MOV     P2,#0F7H
 0016         ?C0001:
+                                           ; SOURCE LINE # 54
                                            ; SOURCE LINE # 55
-                                           ; SOURCE LINE # 56
 0016 120000      R     LCALL   Load
-                                           ; SOURCE LINE # 57
+                                           ; SOURCE LINE # 56
 0019 120000      R     LCALL   KeyDriver
-                                           ; SOURCE LINE # 58
+                                           ; SOURCE LINE # 57
 001C 80F8              SJMP    ?C0001
              ; FUNCTION main (END)
 
              ; FUNCTION Load (BEGIN)
+                                           ; SOURCE LINE # 61
                                            ; SOURCE LINE # 62
-                                           ; SOURCE LINE # 63
-                                           ; SOURCE LINE # 65
+                                           ; SOURCE LINE # 64
 0000 E500        R     MOV     A,Low
 0002 75F00A            MOV     B,#0AH
 0005 120000      E     LCALL   ?C?SCDIV
@@ -450,14 +448,14 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0019 E4                CLR     A
 001A 93                MOVC    A,@A+DPTR
 001B F500        R     MOV     LedBuff,A
-                                           ; SOURCE LINE # 66
+                                           ; SOURCE LINE # 65
 001D E500        R     MOV     A,Low
 001F 75F00A            MOV     B,#0AH
 0022 120000      E     LCALL   ?C?SCDIV
 0025 FF                MOV     R7,A
 0026 33                RLC     A
 0027 95E0              SUBB    A,ACC
-C51 COMPILER V9.60.7.0   MAIN                                                              12/23/2023 15:27:54 PAGE 9   
+C51 COMPILER V9.60.7.0   MAIN                                                              12/28/2023 12:40:37 PAGE 9   
 
 0029 FE                MOV     R6,A
 002A 7400        R     MOV     A,#LOW LedChar
@@ -469,7 +467,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0034 E4                CLR     A
 0035 93                MOVC    A,@A+DPTR
 0036 F500        R     MOV     LedBuff+01H,A
-                                           ; SOURCE LINE # 68
+                                           ; SOURCE LINE # 67
 0038 E500        R     MOV     A,Mid
 003A 75F00A            MOV     B,#0AH
 003D 120000      E     LCALL   ?C?SCDIV
@@ -487,7 +485,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0051 E4                CLR     A
 0052 93                MOVC    A,@A+DPTR
 0053 F500        R     MOV     LedBuff+02H,A
-                                           ; SOURCE LINE # 69
+                                           ; SOURCE LINE # 68
 0055 E500        R     MOV     A,Mid
 0057 75F00A            MOV     B,#0AH
 005A 120000      E     LCALL   ?C?SCDIV
@@ -504,7 +502,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 006C E4                CLR     A
 006D 93                MOVC    A,@A+DPTR
 006E F500        R     MOV     LedBuff+03H,A
-                                           ; SOURCE LINE # 71
+                                           ; SOURCE LINE # 70
 0070 E500        R     MOV     A,High
 0072 75F00A            MOV     B,#0AH
 0075 120000      E     LCALL   ?C?SCDIV
@@ -521,10 +519,10 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0087 F583              MOV     DPH,A
 0089 E4                CLR     A
 008A 93                MOVC    A,@A+DPTR
-C51 COMPILER V9.60.7.0   MAIN                                                              12/23/2023 15:27:54 PAGE 10  
+C51 COMPILER V9.60.7.0   MAIN                                                              12/28/2023 12:40:37 PAGE 10  
 
 008B F500        R     MOV     LedBuff+04H,A
-                                           ; SOURCE LINE # 72
+                                           ; SOURCE LINE # 71
 008D E500        R     MOV     A,High
 008F 75F00A            MOV     B,#0AH
 0092 120000      E     LCALL   ?C?SCDIV
@@ -541,41 +539,41 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 00A4 E4                CLR     A
 00A5 93                MOVC    A,@A+DPTR
 00A6 F500        R     MOV     LedBuff+05H,A
-                                           ; SOURCE LINE # 74
+                                           ; SOURCE LINE # 73
 00A8 53007F      R     ANL     LedBuff+02H,#07FH
-                                           ; SOURCE LINE # 75
+                                           ; SOURCE LINE # 74
 00AB 22                RET     
              ; FUNCTION Load (END)
 
              ; FUNCTION Reset (BEGIN)
+                                           ; SOURCE LINE # 77
                                            ; SOURCE LINE # 78
                                            ; SOURCE LINE # 79
-                                           ; SOURCE LINE # 80
 0000 750018      R     MOV     Low,#018H
-                                           ; SOURCE LINE # 81
+                                           ; SOURCE LINE # 80
 0003 020000      R     LJMP    Load
              ; FUNCTION Reset (END)
 
              ; FUNCTION Count (BEGIN)
+                                           ; SOURCE LINE # 84
                                            ; SOURCE LINE # 85
                                            ; SOURCE LINE # 86
-                                           ; SOURCE LINE # 87
 0000 E4                CLR     A
 0001 F500        R     MOV     i,A
 0003 F500        R     MOV     i+01H,A
-                                           ; SOURCE LINE # 88
+                                           ; SOURCE LINE # 87
 0005 300048            JNB     RunFLag,?C0014
+                                           ; SOURCE LINE # 88
                                            ; SOURCE LINE # 89
-                                           ; SOURCE LINE # 90
 0008 1500        R     DEC     Low
-                                           ; SOURCE LINE # 91
+                                           ; SOURCE LINE # 90
 000A D3                SETB    C
 000B E500        R     MOV     A,Low
 000D 6480              XRL     A,#080H
 000F 9480              SUBB    A,#080H
 0011 5022              JNC     ?C0007
+                                           ; SOURCE LINE # 91
                                            ; SOURCE LINE # 92
-                                           ; SOURCE LINE # 93
 0013 C3                CLR     C
 0014 E500        R     MOV     A,Mid
 0016 6480              XRL     A,#080H
@@ -585,63 +583,63 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 001E 6480              XRL     A,#080H
 0020 9480              SUBB    A,#080H
 0022 4005              JC      ?C0008
-C51 COMPILER V9.60.7.0   MAIN                                                              12/23/2023 15:27:54 PAGE 11  
+C51 COMPILER V9.60.7.0   MAIN                                                              12/28/2023 12:40:37 PAGE 11  
 
 0024         ?C0009:
-                                           ; SOURCE LINE # 94
+                                           ; SOURCE LINE # 93
 0024 750018      R     MOV     Low,#018H
 0027 800C              SJMP    ?C0007
 0029         ?C0008:
-                                           ; SOURCE LINE # 95
+                                           ; SOURCE LINE # 94
 0029 C3                CLR     C
 002A E500        R     MOV     A,Mid
 002C 6480              XRL     A,#080H
 002E 9498              SUBB    A,#098H
 0030 5003              JNC     ?C0007
-                                           ; SOURCE LINE # 96
+                                           ; SOURCE LINE # 95
 0032 E4                CLR     A
 0033 F500        R     MOV     Low,A
-                                           ; SOURCE LINE # 97
+                                           ; SOURCE LINE # 96
 0035         ?C0007:
-                                           ; SOURCE LINE # 98
+                                           ; SOURCE LINE # 97
 0035 D3                SETB    C
 0036 E500        R     MOV     A,Mid
 0038 6480              XRL     A,#080H
 003A 9480              SUBB    A,#080H
 003C 5005              JNC     ?C0012
+                                           ; SOURCE LINE # 98
                                            ; SOURCE LINE # 99
-                                           ; SOURCE LINE # 100
 003E 75003C      R     MOV     Mid,#03CH
-                                           ; SOURCE LINE # 101
+                                           ; SOURCE LINE # 100
 0041 1500        R     DEC     High
-                                           ; SOURCE LINE # 102
+                                           ; SOURCE LINE # 101
 0043         ?C0012:
-                                           ; SOURCE LINE # 103
+                                           ; SOURCE LINE # 102
 0043 1500        R     DEC     Mid
-                                           ; SOURCE LINE # 104
+                                           ; SOURCE LINE # 103
 0045 E500        R     MOV     A,High
 0047 7007              JNZ     ?C0014
 0049 E500        R     MOV     A,Mid
 004B 7003              JNZ     ?C0014
+                                           ; SOURCE LINE # 104
                                            ; SOURCE LINE # 105
-                                           ; SOURCE LINE # 106
 004D 120000      R     LCALL   all
+                                           ; SOURCE LINE # 106
                                            ; SOURCE LINE # 107
                                            ; SOURCE LINE # 108
-                                           ; SOURCE LINE # 109
 0050         ?C0014:
 0050 22                RET     
              ; FUNCTION Count (END)
 
              ; FUNCTION KeyDriver (BEGIN)
+                                           ; SOURCE LINE # 111
                                            ; SOURCE LINE # 112
-                                           ; SOURCE LINE # 113
-                                           ; SOURCE LINE # 117
+                                           ; SOURCE LINE # 116
 0000 E4                CLR     A
 0001 F500        R     MOV     i,A
 0003         ?C0015:
+                                           ; SOURCE LINE # 117
                                            ; SOURCE LINE # 118
-                                           ; SOURCE LINE # 119
 0003 7400        R     MOV     A,#LOW KeySta
 0005 2500        R     ADD     A,i
 0007 F8                MOV     R0,A
@@ -649,33 +647,33 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0009 FF                MOV     R7,A
 000A 7400        R     MOV     A,#LOW backup
 000C 2500        R     ADD     A,i
-C51 COMPILER V9.60.7.0   MAIN                                                              12/23/2023 15:27:54 PAGE 12  
+C51 COMPILER V9.60.7.0   MAIN                                                              12/28/2023 12:40:37 PAGE 12  
 
 000E F8                MOV     R0,A
 000F E6                MOV     A,@R0
 0010 FE                MOV     R6,A
 0011 6F                XRL     A,R7
 0012 6021              JZ      ?C0017
+                                           ; SOURCE LINE # 119
                                            ; SOURCE LINE # 120
-                                           ; SOURCE LINE # 121
 0014 EE                MOV     A,R6
 0015 6010              JZ      ?C0019
+                                           ; SOURCE LINE # 121
                                            ; SOURCE LINE # 122
-                                           ; SOURCE LINE # 123
 0017 E500        R     MOV     A,i
 0019 B40105            CJNE    A,#01H,?C0020
-                                           ; SOURCE LINE # 124
+                                           ; SOURCE LINE # 123
 001C 120000      R     LCALL   Reset
 001F 8006              SJMP    ?C0019
 0021         ?C0020:
-                                           ; SOURCE LINE # 125
+                                           ; SOURCE LINE # 124
 0021 E500        R     MOV     A,i
 0023 7002              JNZ     ?C0019
-                                           ; SOURCE LINE # 126
+                                           ; SOURCE LINE # 125
 0025 B200        R     CPL     RunFLag
-                                           ; SOURCE LINE # 127
+                                           ; SOURCE LINE # 126
 0027         ?C0019:
-                                           ; SOURCE LINE # 128
+                                           ; SOURCE LINE # 127
 0027 7400        R     MOV     A,#LOW KeySta
 0029 2500        R     ADD     A,i
 002B F8                MOV     R0,A
@@ -685,23 +683,23 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0030 2500        R     ADD     A,i
 0032 F8                MOV     R0,A
 0033 A607              MOV     @R0,AR7
+                                           ; SOURCE LINE # 128
                                            ; SOURCE LINE # 129
-                                           ; SOURCE LINE # 130
 0035         ?C0017:
 0035 0500        R     INC     i
 0037 E500        R     MOV     A,i
 0039 C3                CLR     C
 003A 9404              SUBB    A,#04H
 003C 40C5              JC      ?C0015
-                                           ; SOURCE LINE # 131
+                                           ; SOURCE LINE # 130
 003E         ?C0023:
 003E 22                RET     
              ; FUNCTION KeyDriver (END)
 
              ; FUNCTION KeyScan (BEGIN)
+                                           ; SOURCE LINE # 133
                                            ; SOURCE LINE # 134
-                                           ; SOURCE LINE # 135
-                                           ; SOURCE LINE # 141
+                                           ; SOURCE LINE # 140
 0000 E500        R     MOV     A,keybuf
 0002 25E0              ADD     A,ACC
 0004 FF                MOV     R7,A
@@ -710,10 +708,10 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0008 33                RLC     A
 0009 4F                ORL     A,R7
 000A F500        R     MOV     keybuf,A
-                                           ; SOURCE LINE # 142
+                                           ; SOURCE LINE # 141
 000C E500        R     MOV     A,keybuf+01H
 000E 25E0              ADD     A,ACC
-C51 COMPILER V9.60.7.0   MAIN                                                              12/23/2023 15:27:54 PAGE 13  
+C51 COMPILER V9.60.7.0   MAIN                                                              12/28/2023 12:40:37 PAGE 13  
 
 0010 FF                MOV     R7,A
 0011 A2A5              MOV     C,KEY2
@@ -721,7 +719,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0014 33                RLC     A
 0015 4F                ORL     A,R7
 0016 F500        R     MOV     keybuf+01H,A
-                                           ; SOURCE LINE # 143
+                                           ; SOURCE LINE # 142
 0018 E500        R     MOV     A,keybuf+02H
 001A 25E0              ADD     A,ACC
 001C FF                MOV     R7,A
@@ -730,7 +728,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0020 33                RLC     A
 0021 4F                ORL     A,R7
 0022 F500        R     MOV     keybuf+02H,A
-                                           ; SOURCE LINE # 144
+                                           ; SOURCE LINE # 143
 0024 E500        R     MOV     A,keybuf+03H
 0026 25E0              ADD     A,ACC
 0028 FF                MOV     R7,A
@@ -739,52 +737,52 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 002C 33                RLC     A
 002D 4F                ORL     A,R7
 002E F500        R     MOV     keybuf+03H,A
-                                           ; SOURCE LINE # 147
+                                           ; SOURCE LINE # 146
 ;---- Variable 'i' assigned to Register 'R7' ----
 0030 E4                CLR     A
 0031 FF                MOV     R7,A
 0032         ?C0024:
-                                           ; SOURCE LINE # 148
+                                           ; SOURCE LINE # 147
 0032 7400        R     MOV     A,#LOW keybuf
 0034 2F                ADD     A,R7
 0035 F8                MOV     R0,A
 0036 E6                MOV     A,@R0
 0037 FE                MOV     R6,A
 0038 7008              JNZ     ?C0027
-                                           ; SOURCE LINE # 149
+                                           ; SOURCE LINE # 148
 003A 7400        R     MOV     A,#LOW KeySta
 003C 2F                ADD     A,R7
 003D F8                MOV     R0,A
 003E E4                CLR     A
 003F F6                MOV     @R0,A
-                                           ; SOURCE LINE # 150
+                                           ; SOURCE LINE # 149
 0040 800A              SJMP    ?C0026
 0042         ?C0027:
 0042 EE                MOV     A,R6
 0043 B4FF06            CJNE    A,#0FFH,?C0026
-                                           ; SOURCE LINE # 151
+                                           ; SOURCE LINE # 150
 0046 7400        R     MOV     A,#LOW KeySta
 0048 2F                ADD     A,R7
 0049 F8                MOV     R0,A
 004A 7601              MOV     @R0,#01H
+                                           ; SOURCE LINE # 151
                                            ; SOURCE LINE # 152
-                                           ; SOURCE LINE # 153
 004C         ?C0026:
 004C 0F                INC     R7
 004D BF02E2            CJNE    R7,#02H,?C0024
-                                           ; SOURCE LINE # 154
+                                           ; SOURCE LINE # 153
 0050         ?C0030:
 0050 22                RET     
              ; FUNCTION KeyScan (END)
 
-C51 COMPILER V9.60.7.0   MAIN                                                              12/23/2023 15:27:54 PAGE 14  
+C51 COMPILER V9.60.7.0   MAIN                                                              12/28/2023 12:40:37 PAGE 14  
 
              ; FUNCTION LedScan (BEGIN)
+                                           ; SOURCE LINE # 156
                                            ; SOURCE LINE # 157
-                                           ; SOURCE LINE # 158
-                                           ; SOURCE LINE # 161
+                                           ; SOURCE LINE # 160
 0000 7580FF            MOV     P0,#0FFH
-                                           ; SOURCE LINE # 162
+                                           ; SOURCE LINE # 161
 0003 E500        R     MOV     A,i
 0005 14                DEC     A
 0006 601C              JZ      ?C0033
@@ -798,114 +796,114 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0012 6040              JZ      ?C0037
 0014 2405              ADD     A,#05H
 0016 7048              JNZ     ?C0039
-                                           ; SOURCE LINE # 163
+                                           ; SOURCE LINE # 162
 0018         ?C0032:
-                                           ; SOURCE LINE # 164
+                                           ; SOURCE LINE # 163
 0018 C292              CLR     ADDR2
-                                           ; SOURCE LINE # 165
+                                           ; SOURCE LINE # 164
 001A C291              CLR     ADDR1
-                                           ; SOURCE LINE # 166
+                                           ; SOURCE LINE # 165
 001C C290              CLR     ADDR0
-                                           ; SOURCE LINE # 167
+                                           ; SOURCE LINE # 166
 001E 0500        R     INC     i
-                                           ; SOURCE LINE # 168
+                                           ; SOURCE LINE # 167
 0020 850080      R     MOV     P0,LedBuff
-                                           ; SOURCE LINE # 169
+                                           ; SOURCE LINE # 168
 0023 22                RET     
-                                           ; SOURCE LINE # 170
+                                           ; SOURCE LINE # 169
 0024         ?C0033:
-                                           ; SOURCE LINE # 171
+                                           ; SOURCE LINE # 170
 0024 C292              CLR     ADDR2
-                                           ; SOURCE LINE # 172
+                                           ; SOURCE LINE # 171
 0026 C291              CLR     ADDR1
-                                           ; SOURCE LINE # 173
+                                           ; SOURCE LINE # 172
 0028 D290              SETB    ADDR0
-                                           ; SOURCE LINE # 174
+                                           ; SOURCE LINE # 173
 002A 0500        R     INC     i
-                                           ; SOURCE LINE # 175
+                                           ; SOURCE LINE # 174
 002C 850080      R     MOV     P0,LedBuff+01H
-                                           ; SOURCE LINE # 176
+                                           ; SOURCE LINE # 175
 002F 22                RET     
-                                           ; SOURCE LINE # 177
+                                           ; SOURCE LINE # 176
 0030         ?C0034:
-                                           ; SOURCE LINE # 178
+                                           ; SOURCE LINE # 177
 0030 C292              CLR     ADDR2
-                                           ; SOURCE LINE # 179
+                                           ; SOURCE LINE # 178
 0032 D291              SETB    ADDR1
-                                           ; SOURCE LINE # 180
+                                           ; SOURCE LINE # 179
 0034 C290              CLR     ADDR0
-                                           ; SOURCE LINE # 181
+                                           ; SOURCE LINE # 180
 0036 0500        R     INC     i
-                                           ; SOURCE LINE # 182
+                                           ; SOURCE LINE # 181
 0038 850080      R     MOV     P0,LedBuff+02H
-                                           ; SOURCE LINE # 183
+                                           ; SOURCE LINE # 182
 003B 22                RET     
-                                           ; SOURCE LINE # 184
-C51 COMPILER V9.60.7.0   MAIN                                                              12/23/2023 15:27:54 PAGE 15  
+                                           ; SOURCE LINE # 183
+C51 COMPILER V9.60.7.0   MAIN                                                              12/28/2023 12:40:37 PAGE 15  
 
 003C         ?C0035:
-                                           ; SOURCE LINE # 185
+                                           ; SOURCE LINE # 184
 003C C292              CLR     ADDR2
-                                           ; SOURCE LINE # 186
+                                           ; SOURCE LINE # 185
 003E D291              SETB    ADDR1
-                                           ; SOURCE LINE # 187
+                                           ; SOURCE LINE # 186
 0040 D290              SETB    ADDR0
-                                           ; SOURCE LINE # 188
+                                           ; SOURCE LINE # 187
 0042 0500        R     INC     i
-                                           ; SOURCE LINE # 189
+                                           ; SOURCE LINE # 188
 0044 850080      R     MOV     P0,LedBuff+03H
-                                           ; SOURCE LINE # 190
+                                           ; SOURCE LINE # 189
 0047 22                RET     
-                                           ; SOURCE LINE # 191
+                                           ; SOURCE LINE # 190
 0048         ?C0036:
-                                           ; SOURCE LINE # 192
+                                           ; SOURCE LINE # 191
 0048 D292              SETB    ADDR2
-                                           ; SOURCE LINE # 193
+                                           ; SOURCE LINE # 192
 004A C291              CLR     ADDR1
-                                           ; SOURCE LINE # 194
+                                           ; SOURCE LINE # 193
 004C C290              CLR     ADDR0
-                                           ; SOURCE LINE # 195
+                                           ; SOURCE LINE # 194
 004E 0500        R     INC     i
-                                           ; SOURCE LINE # 196
+                                           ; SOURCE LINE # 195
 0050 850080      R     MOV     P0,LedBuff+04H
-                                           ; SOURCE LINE # 197
+                                           ; SOURCE LINE # 196
 0053 22                RET     
-                                           ; SOURCE LINE # 198
+                                           ; SOURCE LINE # 197
 0054         ?C0037:
-                                           ; SOURCE LINE # 199
+                                           ; SOURCE LINE # 198
 0054 D292              SETB    ADDR2
-                                           ; SOURCE LINE # 200
+                                           ; SOURCE LINE # 199
 0056 C291              CLR     ADDR1
-                                           ; SOURCE LINE # 201
+                                           ; SOURCE LINE # 200
 0058 D290              SETB    ADDR0
-                                           ; SOURCE LINE # 202
+                                           ; SOURCE LINE # 201
 005A E4                CLR     A
 005B F500        R     MOV     i,A
-                                           ; SOURCE LINE # 203
+                                           ; SOURCE LINE # 202
 005D 850080      R     MOV     P0,LedBuff+05H
+                                           ; SOURCE LINE # 203
                                            ; SOURCE LINE # 204
                                            ; SOURCE LINE # 205
                                            ; SOURCE LINE # 206
                                            ; SOURCE LINE # 207
-                                           ; SOURCE LINE # 208
 0060         ?C0039:
 0060 22                RET     
              ; FUNCTION LedScan (END)
 
              ; FUNCTION all (BEGIN)
+                                           ; SOURCE LINE # 208
                                            ; SOURCE LINE # 209
                                            ; SOURCE LINE # 210
-                                           ; SOURCE LINE # 211
 0000 E4                CLR     A
 0001 F500        R     MOV     x,A
-                                           ; SOURCE LINE # 212
+                                           ; SOURCE LINE # 211
 0003 F500        R     MOV     i,A
 0005         ?C0040:
+                                           ; SOURCE LINE # 212
                                            ; SOURCE LINE # 213
-                                           ; SOURCE LINE # 214
 0005 7580FF            MOV     P0,#0FFH
-                                           ; SOURCE LINE # 215
-C51 COMPILER V9.60.7.0   MAIN                                                              12/23/2023 15:27:54 PAGE 16  
+                                           ; SOURCE LINE # 214
+C51 COMPILER V9.60.7.0   MAIN                                                              12/28/2023 12:40:37 PAGE 16  
 
 0008 E500        R     MOV     A,x
 000A B40F00            CJNE    A,#0FH,?C0066
@@ -933,235 +931,235 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 003D 020000      R     LJMP    ?C0055
 0040 020000      R     LJMP    ?C0056
 0043 020000      R     LJMP    ?C0057
-                                           ; SOURCE LINE # 217
+                                           ; SOURCE LINE # 216
 0046         ?C0043:
-                                           ; SOURCE LINE # 218
+                                           ; SOURCE LINE # 217
 0046 D293              SETB    ADDR3
-                                           ; SOURCE LINE # 219
+                                           ; SOURCE LINE # 218
 0048 C292              CLR     ADDR2
+                                           ; SOURCE LINE # 219
                                            ; SOURCE LINE # 220
                                            ; SOURCE LINE # 221
                                            ; SOURCE LINE # 222
                                            ; SOURCE LINE # 223
-                                           ; SOURCE LINE # 224
 004A 801A              SJMP    ?C0069
-                                           ; SOURCE LINE # 225
+                                           ; SOURCE LINE # 224
 004C         ?C0044:
-                                           ; SOURCE LINE # 226
+                                           ; SOURCE LINE # 225
 004C D293              SETB    ADDR3
-                                           ; SOURCE LINE # 227
+                                           ; SOURCE LINE # 226
 004E C292              CLR     ADDR2
+                                           ; SOURCE LINE # 227
                                            ; SOURCE LINE # 228
                                            ; SOURCE LINE # 229
                                            ; SOURCE LINE # 230
                                            ; SOURCE LINE # 231
-                                           ; SOURCE LINE # 232
 0050 801E              SJMP    ?C0070
-                                           ; SOURCE LINE # 233
+                                           ; SOURCE LINE # 232
 0052         ?C0045:
-                                           ; SOURCE LINE # 234
+                                           ; SOURCE LINE # 233
 0052 D293              SETB    ADDR3
-                                           ; SOURCE LINE # 235
+                                           ; SOURCE LINE # 234
 0054 C292              CLR     ADDR2
-                                           ; SOURCE LINE # 236
+                                           ; SOURCE LINE # 235
 0056 D291              SETB    ADDR1
+                                           ; SOURCE LINE # 236
                                            ; SOURCE LINE # 237
                                            ; SOURCE LINE # 238
                                            ; SOURCE LINE # 239
-                                           ; SOURCE LINE # 240
-C51 COMPILER V9.60.7.0   MAIN                                                              12/23/2023 15:27:54 PAGE 17  
+C51 COMPILER V9.60.7.0   MAIN                                                              12/28/2023 12:40:37 PAGE 17  
 
 0058 800E              SJMP    ?C0071
-                                           ; SOURCE LINE # 241
+                                           ; SOURCE LINE # 240
 005A         ?C0046:
-                                           ; SOURCE LINE # 242
+                                           ; SOURCE LINE # 241
 005A D293              SETB    ADDR3
-                                           ; SOURCE LINE # 243
+                                           ; SOURCE LINE # 242
 005C C292              CLR     ADDR2
-                                           ; SOURCE LINE # 244
+                                           ; SOURCE LINE # 243
 005E D291              SETB    ADDR1
+                                           ; SOURCE LINE # 244
                                            ; SOURCE LINE # 245
                                            ; SOURCE LINE # 246
                                            ; SOURCE LINE # 247
-                                           ; SOURCE LINE # 248
 0060 8010              SJMP    ?C0072
-                                           ; SOURCE LINE # 249
+                                           ; SOURCE LINE # 248
 0062         ?C0047:
-                                           ; SOURCE LINE # 250
+                                           ; SOURCE LINE # 249
 0062 D293              SETB    ADDR3
-                                           ; SOURCE LINE # 251
+                                           ; SOURCE LINE # 250
 0064 D292              SETB    ADDR2
-                                           ; SOURCE LINE # 252
+                                           ; SOURCE LINE # 251
 0066         ?C0069:
 0066 C291              CLR     ADDR1
-                                           ; SOURCE LINE # 253
+                                           ; SOURCE LINE # 252
 0068         ?C0071:
 0068 C290              CLR     ADDR0
+                                           ; SOURCE LINE # 253
                                            ; SOURCE LINE # 254
                                            ; SOURCE LINE # 255
-                                           ; SOURCE LINE # 256
 006A 8008              SJMP    ?C0073
-                                           ; SOURCE LINE # 257
+                                           ; SOURCE LINE # 256
 006C         ?C0048:
-                                           ; SOURCE LINE # 258
+                                           ; SOURCE LINE # 257
 006C D293              SETB    ADDR3
-                                           ; SOURCE LINE # 259
+                                           ; SOURCE LINE # 258
 006E D292              SETB    ADDR2
-                                           ; SOURCE LINE # 260
+                                           ; SOURCE LINE # 259
 0070         ?C0070:
 0070 C291              CLR     ADDR1
-                                           ; SOURCE LINE # 261
+                                           ; SOURCE LINE # 260
 0072         ?C0072:
 0072 D290              SETB    ADDR0
-                                           ; SOURCE LINE # 262
+                                           ; SOURCE LINE # 261
 0074         ?C0073:
 0074 0500        R     INC     x
-                                           ; SOURCE LINE # 263
+                                           ; SOURCE LINE # 262
 0076 900000      R     MOV     DPTR,#LedChar
 0079 E4                CLR     A
 007A 93                MOVC    A,@A+DPTR
 007B F580              MOV     P0,A
-                                           ; SOURCE LINE # 264
+                                           ; SOURCE LINE # 263
 007D 804C              SJMP    ?C0042
-                                           ; SOURCE LINE # 267
+                                           ; SOURCE LINE # 266
 007F         ?C0049:
-                                           ; SOURCE LINE # 268
+                                           ; SOURCE LINE # 267
 007F D293              SETB    ADDR3
+                                           ; SOURCE LINE # 268
                                            ; SOURCE LINE # 269
                                            ; SOURCE LINE # 270
                                            ; SOURCE LINE # 271
                                            ; SOURCE LINE # 272
                                            ; SOURCE LINE # 273
-                                           ; SOURCE LINE # 274
-C51 COMPILER V9.60.7.0   MAIN                                                              12/23/2023 15:27:54 PAGE 18  
+C51 COMPILER V9.60.7.0   MAIN                                                              12/28/2023 12:40:37 PAGE 18  
 
 0081 802E              SJMP    ?C0074
-                                           ; SOURCE LINE # 277
+                                           ; SOURCE LINE # 276
 0083         ?C0050:
-                                           ; SOURCE LINE # 278
+                                           ; SOURCE LINE # 277
 0083 C293              CLR     ADDR3
-                                           ; SOURCE LINE # 279
+                                           ; SOURCE LINE # 278
 0085 C292              CLR     ADDR2
+                                           ; SOURCE LINE # 279
                                            ; SOURCE LINE # 280
                                            ; SOURCE LINE # 281
                                            ; SOURCE LINE # 282
                                            ; SOURCE LINE # 283
-                                           ; SOURCE LINE # 284
 0087 8018              SJMP    ?C0075
-                                           ; SOURCE LINE # 285
+                                           ; SOURCE LINE # 284
 0089         ?C0051:
-                                           ; SOURCE LINE # 286
+                                           ; SOURCE LINE # 285
 0089 C293              CLR     ADDR3
-                                           ; SOURCE LINE # 287
+                                           ; SOURCE LINE # 286
 008B C292              CLR     ADDR2
+                                           ; SOURCE LINE # 287
                                            ; SOURCE LINE # 288
                                            ; SOURCE LINE # 289
                                            ; SOURCE LINE # 290
                                            ; SOURCE LINE # 291
-                                           ; SOURCE LINE # 292
 008D 801A              SJMP    ?C0076
-                                           ; SOURCE LINE # 293
+                                           ; SOURCE LINE # 292
 008F         ?C0052:
-                                           ; SOURCE LINE # 294
+                                           ; SOURCE LINE # 293
 008F C293              CLR     ADDR3
-                                           ; SOURCE LINE # 295
+                                           ; SOURCE LINE # 294
 0091 C292              CLR     ADDR2
+                                           ; SOURCE LINE # 295
                                            ; SOURCE LINE # 296
                                            ; SOURCE LINE # 297
                                            ; SOURCE LINE # 298
                                            ; SOURCE LINE # 299
-                                           ; SOURCE LINE # 300
 0093 801E              SJMP    ?C0077
-                                           ; SOURCE LINE # 301
+                                           ; SOURCE LINE # 300
 0095         ?C0053:
-                                           ; SOURCE LINE # 302
+                                           ; SOURCE LINE # 301
 0095 C293              CLR     ADDR3
-                                           ; SOURCE LINE # 303
+                                           ; SOURCE LINE # 302
 0097 C292              CLR     ADDR2
-                                           ; SOURCE LINE # 304
+                                           ; SOURCE LINE # 303
 0099 D291              SETB    ADDR1
+                                           ; SOURCE LINE # 304
                                            ; SOURCE LINE # 305
                                            ; SOURCE LINE # 306
                                            ; SOURCE LINE # 307
-                                           ; SOURCE LINE # 308
 009B 800E              SJMP    ?C0078
-                                           ; SOURCE LINE # 309
+                                           ; SOURCE LINE # 308
 009D         ?C0054:
-                                           ; SOURCE LINE # 310
+                                           ; SOURCE LINE # 309
 009D C293              CLR     ADDR3
-                                           ; SOURCE LINE # 311
+                                           ; SOURCE LINE # 310
 009F D292              SETB    ADDR2
-                                           ; SOURCE LINE # 312
+                                           ; SOURCE LINE # 311
 00A1         ?C0075:
 00A1 C291              CLR     ADDR1
+                                           ; SOURCE LINE # 312
                                            ; SOURCE LINE # 313
                                            ; SOURCE LINE # 314
-                                           ; SOURCE LINE # 315
-C51 COMPILER V9.60.7.0   MAIN                                                              12/23/2023 15:27:54 PAGE 19  
+C51 COMPILER V9.60.7.0   MAIN                                                              12/28/2023 12:40:37 PAGE 19  
 
-                                           ; SOURCE LINE # 316
+                                           ; SOURCE LINE # 315
 00A3 8010              SJMP    ?C0079
-                                           ; SOURCE LINE # 317
+                                           ; SOURCE LINE # 316
 00A5         ?C0055:
-                                           ; SOURCE LINE # 318
+                                           ; SOURCE LINE # 317
 00A5 C293              CLR     ADDR3
-                                           ; SOURCE LINE # 319
+                                           ; SOURCE LINE # 318
 00A7 D292              SETB    ADDR2
-                                           ; SOURCE LINE # 320
+                                           ; SOURCE LINE # 319
 00A9         ?C0076:
 00A9 C291              CLR     ADDR1
-                                           ; SOURCE LINE # 321
+                                           ; SOURCE LINE # 320
 00AB         ?C0078:
 00AB D290              SETB    ADDR0
+                                           ; SOURCE LINE # 321
                                            ; SOURCE LINE # 322
                                            ; SOURCE LINE # 323
-                                           ; SOURCE LINE # 324
 00AD 8008              SJMP    ?C0080
-                                           ; SOURCE LINE # 325
+                                           ; SOURCE LINE # 324
 00AF         ?C0056:
-                                           ; SOURCE LINE # 326
+                                           ; SOURCE LINE # 325
 00AF C293              CLR     ADDR3
-                                           ; SOURCE LINE # 327
+                                           ; SOURCE LINE # 326
 00B1         ?C0074:
 00B1 D292              SETB    ADDR2
-                                           ; SOURCE LINE # 328
+                                           ; SOURCE LINE # 327
 00B3         ?C0077:
 00B3 D291              SETB    ADDR1
-                                           ; SOURCE LINE # 329
+                                           ; SOURCE LINE # 328
 00B5         ?C0079:
 00B5 C290              CLR     ADDR0
-                                           ; SOURCE LINE # 330
+                                           ; SOURCE LINE # 329
 00B7         ?C0080:
 00B7 0500        R     INC     x
-                                           ; SOURCE LINE # 331
+                                           ; SOURCE LINE # 330
 00B9 E4                CLR     A
 00BA F580              MOV     P0,A
-                                           ; SOURCE LINE # 332
+                                           ; SOURCE LINE # 331
 00BC 800D              SJMP    ?C0042
-                                           ; SOURCE LINE # 333
+                                           ; SOURCE LINE # 332
 00BE         ?C0057:
-                                           ; SOURCE LINE # 334
+                                           ; SOURCE LINE # 333
 00BE C293              CLR     ADDR3
-                                           ; SOURCE LINE # 335
+                                           ; SOURCE LINE # 334
 00C0 D292              SETB    ADDR2
-                                           ; SOURCE LINE # 336
+                                           ; SOURCE LINE # 335
 00C2 D291              SETB    ADDR1
-                                           ; SOURCE LINE # 337
+                                           ; SOURCE LINE # 336
 00C4 D290              SETB    ADDR0
-                                           ; SOURCE LINE # 338
+                                           ; SOURCE LINE # 337
 00C6 E4                CLR     A
 00C7 F500        R     MOV     x,A
-                                           ; SOURCE LINE # 339
+                                           ; SOURCE LINE # 338
 00C9 F580              MOV     P0,A
+                                           ; SOURCE LINE # 339
                                            ; SOURCE LINE # 340
                                            ; SOURCE LINE # 341
                                            ; SOURCE LINE # 342
-                                           ; SOURCE LINE # 343
 00CB         ?C0042:
-                                           ; SOURCE LINE # 344
+                                           ; SOURCE LINE # 343
 00CB E4                CLR     A
 00CC F500        R     MOV     i,A
-C51 COMPILER V9.60.7.0   MAIN                                                              12/23/2023 15:27:54 PAGE 20  
+C51 COMPILER V9.60.7.0   MAIN                                                              12/28/2023 12:40:37 PAGE 20  
 
 00CE         ?C0059:
 00CE 0500        R     INC     i
@@ -1170,18 +1168,18 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 00D3 94C8              SUBB    A,#0C8H
 00D5 40F7              JC      ?C0059
 00D7         ?C0060:
-                                           ; SOURCE LINE # 346
+                                           ; SOURCE LINE # 345
 00D7 120000      R     LCALL   StartBuzz
-                                           ; SOURCE LINE # 347
+                                           ; SOURCE LINE # 346
 00DA 020000      R     LJMP    ?C0040
              ; FUNCTION all (END)
 
              ; FUNCTION StartBuzz (BEGIN)
+                                           ; SOURCE LINE # 349
                                            ; SOURCE LINE # 350
                                            ; SOURCE LINE # 351
-                                           ; SOURCE LINE # 352
 0000 B296              CPL     BUZZ
-                                           ; SOURCE LINE # 353
+                                           ; SOURCE LINE # 352
 0002 22                RET     
              ; FUNCTION StartBuzz (END)
 
@@ -1200,36 +1198,36 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0017 C005              PUSH    AR5
 0019 C006              PUSH    AR6
 001B C007              PUSH    AR7
-                                           ; SOURCE LINE # 356
-                                           ; SOURCE LINE # 360
+                                           ; SOURCE LINE # 355
+                                           ; SOURCE LINE # 359
 001D 758CF8            MOV     TH0,#0F8H
-                                           ; SOURCE LINE # 361
+                                           ; SOURCE LINE # 360
 0020 758ACD            MOV     TL0,#0CDH
-                                           ; SOURCE LINE # 362
+                                           ; SOURCE LINE # 361
 0023 120000      R     LCALL   LedScan
-                                           ; SOURCE LINE # 363
+                                           ; SOURCE LINE # 362
 0026 120000      R     LCALL   KeyScan
-                                           ; SOURCE LINE # 365
+                                           ; SOURCE LINE # 364
 0029 0500        R     INC     tmr2ms+01H
 002B E500        R     MOV     A,tmr2ms+01H
 002D 7002              JNZ     ?C0068
 002F 0500        R     INC     tmr2ms
 0031         ?C0068:
-                                           ; SOURCE LINE # 366
+                                           ; SOURCE LINE # 365
 0031 C3                CLR     C
 0032 94F4              SUBB    A,#0F4H
 0034 E500        R     MOV     A,tmr2ms
 0036 9401              SUBB    A,#01H
 0038 4009              JC      ?C0065
-                                           ; SOURCE LINE # 367
+                                           ; SOURCE LINE # 366
 003A 750000      R     MOV     tmr2ms,#00H
 003D 750000      R     MOV     tmr2ms+01H,#00H
-                                           ; SOURCE LINE # 368
-C51 COMPILER V9.60.7.0   MAIN                                                              12/23/2023 15:27:54 PAGE 21  
+                                           ; SOURCE LINE # 367
+C51 COMPILER V9.60.7.0   MAIN                                                              12/28/2023 12:40:37 PAGE 21  
 
 0040 120000      R     LCALL   Count
+                                           ; SOURCE LINE # 368
                                            ; SOURCE LINE # 369
-                                           ; SOURCE LINE # 370
 0043         ?C0065:
 0043 D007              POP     AR7
 0045 D006              POP     AR6
@@ -1247,7 +1245,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 005D 32                RETI    
              ; FUNCTION InterruptTimer0 (END)
 
-C51 COMPILER V9.60.7.0   MAIN                                                              12/23/2023 15:27:54 PAGE 22  
+C51 COMPILER V9.60.7.0   MAIN                                                              12/28/2023 12:40:37 PAGE 22  
 
 NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
 ====                                    =====   ======  ====    ======  ====
@@ -1310,7 +1308,7 @@ KeyScan. . . . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
   keybuf . . . . . . . . . . . . . . .  STATIC   DATA   ARRAY    0004H  4
 Low. . . . . . . . . . . . . . . . . .  PUBLIC   DATA   CHAR     0013H  1
 SCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0098H  1
-C51 COMPILER V9.60.7.0   MAIN                                                              12/23/2023 15:27:54 PAGE 23  
+C51 COMPILER V9.60.7.0   MAIN                                                              12/28/2023 12:40:37 PAGE 23  
 
 NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
 ====                                    =====   ======  ====    ======  ====
@@ -1373,7 +1371,7 @@ REN. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009CH  1
 T2CON. . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00C8H  1
 ENLED. . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0094H  1
 RXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B0H  1
-C51 COMPILER V9.60.7.0   MAIN                                                              12/23/2023 15:27:54 PAGE 24  
+C51 COMPILER V9.60.7.0   MAIN                                                              12/28/2023 12:40:37 PAGE 24  
 
 NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
 ====                                    =====   ======  ====    ======  ====

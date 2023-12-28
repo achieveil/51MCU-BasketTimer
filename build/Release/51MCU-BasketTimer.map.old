@@ -1,4 +1,4 @@
-LX51 LINKER/LOCATER V4.66.100.0                                                         12/23/2023  15:26:00  PAGE 1
+LX51 LINKER/LOCATER V4.66.100.0                                                         12/28/2023  12:40:31  PAGE 1
 
 
 LX51 LINKER/LOCATER V4.66.100.0, INVOKED BY:
@@ -67,7 +67,7 @@ START     STOP      LENGTH    ALIGN  RELOC    MEMORY CLASS   SEGMENT NAME
 0008DDH   000988H   0000ACH   ---    ---      **GAP**
 000989H   000A14H   00008CH   BYTE   UNIT     CODE           ?C_C51STARTUP
 
-LX51 LINKER/LOCATER V4.66.100.0                                                       12/23/2023  15:26:00  PAGE 2
+LX51 LINKER/LOCATER V4.66.100.0                                                       12/28/2023  12:40:31  PAGE 2
 
 
 
@@ -135,7 +135,7 @@ PUBLIC SYMBOLS OF MODULE:  .\BUILD\RELEASE\51MCU-BASKETTIMER (MAIN)
       010001CAH   CODE     ---       KeyScan
       0000001CH   DATA     ---       KeySta
       00000015H   DATA     ---       LedBuff
-LX51 LINKER/LOCATER V4.66.100.0                                                       12/23/2023  15:26:00  PAGE 3
+LX51 LINKER/LOCATER V4.66.100.0                                                       12/28/2023  12:40:31  PAGE 3
 
 
       010002CCH   CONST    ---       LedChar
@@ -203,7 +203,7 @@ SYMBOL TABLE OF MODULE:  .\BUILD\RELEASE\51MCU-BASKETTIMER (MAIN)
       0000000CH   SYMBOL    DATA     VOID      keybuf
       ---         BLOCKEND  ---      ---       LVL=1
       ---         BLOCKEND  ---      ---       LVL=0
-LX51 LINKER/LOCATER V4.66.100.0                                                       12/23/2023  15:26:00  PAGE 4
+LX51 LINKER/LOCATER V4.66.100.0                                                       12/28/2023  12:40:31  PAGE 4
 
 
 

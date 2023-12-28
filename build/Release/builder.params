@@ -7,11 +7,11 @@
     "buildMode": "normal|multhread",
     "showRepathOnLog": true,
     "threadNum": 16,
-    "rootDir": "c:\\Users\\achie\\OneDrive\\Projects\\EIDEProjects\\课程C51\\51MCU-BasketTimer",
+    "rootDir": "c:\\Users\\achie\\OneDrive\\Projects\\EIDEProjects\\51MCU-BasketTimer",
     "dumpPath": "build\\Release",
     "outDir": "build\\Release",
     "incDirs": [
-        "../../../../../../../Program Files (x86)/Keil_v5/C51/INC",
+        "../../../../../../Program Files (x86)/Keil_v5/C51/INC",
         "src"
     ],
     "libDirs": [],
@@ -22,7 +22,7 @@
         "src/main.c"
     ],
     "sourceParams": {},
-    "sourceParamsMtime": 1703206879060.6836,
+    "sourceParamsMtime": 1703735841960.442,
     "options": {
         "beforeBuildTasks": [],
         "afterBuildTasks": [],
@@ -44,15 +44,15 @@
         "version": 2
     },
     "env": {
-        "workspaceFolder": "c:\\Users\\achie\\OneDrive\\Projects\\EIDEProjects\\课程C51\\51MCU-BasketTimer",
+        "workspaceFolder": "c:\\Users\\achie\\OneDrive\\Projects\\EIDEProjects\\51MCU-BasketTimer",
         "workspaceFolderBasename": "51MCU-BasketTimer",
-        "OutDir": "c:\\Users\\achie\\OneDrive\\Projects\\EIDEProjects\\课程C51\\51MCU-BasketTimer\\build\\Release",
+        "OutDir": "c:\\Users\\achie\\OneDrive\\Projects\\EIDEProjects\\51MCU-BasketTimer\\build\\Release",
         "OutDirRoot": "build",
         "OutDirBase": "build\\Release",
         "ProjectName": "51MCU-BasketTimer",
         "ConfigName": "Release",
-        "ProjectRoot": "c:\\Users\\achie\\OneDrive\\Projects\\EIDEProjects\\课程C51\\51MCU-BasketTimer",
-        "ExecutableName": "c:\\Users\\achie\\OneDrive\\Projects\\EIDEProjects\\课程C51\\51MCU-BasketTimer\\build\\Release\\51MCU-BasketTimer",
+        "ProjectRoot": "c:\\Users\\achie\\OneDrive\\Projects\\EIDEProjects\\51MCU-BasketTimer",
+        "ExecutableName": "c:\\Users\\achie\\OneDrive\\Projects\\EIDEProjects\\51MCU-BasketTimer\\build\\Release\\51MCU-BasketTimer",
         "SYS_Platform": "win32",
         "SYS_DirSep": "\\",
         "SYS_DirSeparator": "\\",
