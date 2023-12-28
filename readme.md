@@ -12,12 +12,12 @@ VScode和[EIDE插件](https://marketplace.visualstudio.com/items?itemName=CL.eide),
 ## 开始
 
 ```powershell
-git clone https://github.com/achieveil/51MCU-BasketTimer.git
+git clone https://github.com/achieveil/KingST-51MCU-BasketTimer.git
 cd 51MCU-BasketTimer
 code .
 ```
 
-或者在下载使用vscode后打开`51MCU-BasketTimer.code-workspace`
+然后打开工作区
 
 ## 构建
 
@@ -29,7 +29,7 @@ code .
 
 ## 效果
 
-1. 系统上电瞬间，6位数码管的高2位显示计时剩余分钟数，中间2位显示计时剩余秒数，低2位显示24秒计时剩余。![Alt text](Images/run.jpg)
+1. 系统上电瞬间，6位数码管的高2位显示计时剩余分钟数，中间2位显示计时剩余秒数，低2位显示24秒计时剩余。低二位变为0会响![Alt text](Images/run.jpg)
 2. 按键K1来进行计时开启/暂停，设置按键K2来进行24秒回表。
 3. 倒计时结束，LED小灯部分全亮，蜂鸣器蜂鸣，点阵全亮，示意比赛结束![Alt text](Images/alarm.jpg)
 
@@ -41,6 +41,6 @@ code .
 
 ## 本项目的初衷
 
-为有能力看到这的同学们尽微薄之力
+纪念这一时刻
 
 ## end

@@ -14,7 +14,7 @@ sbit KEY3 = P2 ^ 6;
 sbit KEY4 = P2 ^ 7;
 
 /**
- * @author achieveil,atnhaoyang
+ * @author achieveil,atnhaoyang,wensenyun
  * @date 2023/12/22
  */
 
