@@ -7,8 +7,8 @@
     "settings": {
         "EIDE.SourceTree.AutoSearchIncludePath": true,
         "EIDE.SourceTree.AutoSearchObjFile": true,
-        "files.autoGuessEncoding": false,
-        "files.encoding": "gbk",
+        "files.autoGuessEncoding": true,
+        "files.encoding": "utf8",
         "EIDE.ARM.Option.AutoGenerateRTE_Components": false,
         "C_Cpp.errorSquiggles": "disabled",
         "files.associations": {
