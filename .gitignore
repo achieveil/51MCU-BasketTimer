@@ -9,7 +9,6 @@ logs/
 # 忽略构建生成
 build/Release
 build/Release/51MCU-BASKETTIMER
-build/Release/51MCU-BasketTimer.hex
 build/Release/51MCU-BasketTimer.lnp
 build/Release/51MCU-BasketTimer.map
 build/Release/51MCU-BasketTimer.map.view
