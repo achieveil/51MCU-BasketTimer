@@ -1,15 +1,15 @@
-# »ùÓÚKingST-51MCUµÄ¼òµ¥ÀºÇò±ÈÈü¼ÆÊ±Æ÷
+# åŸºäºŽKingST-51MCUçš„ç®€å•ç¯®çƒæ¯”èµ›è®¡æ—¶å™¨
 
-## Ç°Ìá
+## å‰æ
 
-VScodeºÍ[EIDE²å¼þ](https://marketplace.visualstudio.com/items?itemName=CL.eide),²¢ÇÒÅäÖÃºÃ¹¤¾ßÁ´£¬ÅäÖÃ[½Ì³Ì](https://zhuanlan.zhihu.com/p/669952673)
+VScodeå’Œ[EIDEæ’ä»¶](https://marketplace.visualstudio.com/items?itemName=CL.eide),å¹¶ä¸”é…ç½®å¥½å·¥å…·é“¾ï¼Œé…ç½®[æ•™ç¨‹](https://zhuanlan.zhihu.com/p/669952673)
 
-## ÊÊÓÃ
+## é€‚ç”¨
 
-½ðÉ³Ì² 51µ¥Æ¬»ú
+é‡‘æ²™æ»© 51å•ç‰‡æœº
 ![Alt text](Images/KingST-51.jpg)
 
-## ¿ªÊ¼
+## å¼€å§‹
 
 ```powershell
 git clone https://github.com/achieveil/KingST-51MCU-BasketTimer.git
@@ -17,30 +17,30 @@ cd 51MCU-BasketTimer
 code .
 ```
 
-È»ºó´ò¿ª¹¤×÷Çø
+ç„¶åŽæ‰“å¼€å·¥ä½œåŒº
 
-## ¹¹½¨
+## æž„å»º
 
-×Ô¶¨Òå´úÂëºó¹¹½¨£¬Éú³ÉhexÎÄ¼þ£¬ÏîÄ¿ÖÐÒÑ´æÔÚ
+è‡ªå®šä¹‰ä»£ç åŽæž„å»ºï¼Œç”Ÿæˆhexæ–‡ä»¶ï¼Œé¡¹ç›®ä¸­å·²å­˜åœ¨
 
-## ÉÕÂ¼µ½µ¥Æ¬»ú
+## çƒ§å½•åˆ°å•ç‰‡æœº
 
-Ê¹ÓÃEIDEµÄÉÕÂ¼ÃüÁî£¨ÐèÒªÅäÖÃ£©£¬»òÕßÊ¹ÓÃÆäËûÉÕÂ¼Èí¼þ
+ä½¿ç”¨EIDEçš„çƒ§å½•å‘½ä»¤ï¼ˆéœ€è¦é…ç½®ï¼‰ï¼Œæˆ–è€…ä½¿ç”¨å…¶ä»–çƒ§å½•è½¯ä»¶
 
-## Ð§¹û
+## æ•ˆæžœ
 
-1. ÏµÍ³ÉÏµçË²¼ä£¬6Î»ÊýÂë¹ÜµÄ¸ß2Î»ÏÔÊ¾¼ÆÊ±Ê£Óà·ÖÖÓÊý£¬ÖÐ¼ä2Î»ÏÔÊ¾¼ÆÊ±Ê£ÓàÃëÊý£¬µÍ2Î»ÏÔÊ¾24Ãë¼ÆÊ±Ê£Óà¡£µÍ¶þÎ»±äÎª0»áÏì![Alt text](Images/run.jpg)
-2. °´¼üK1À´½øÐÐ¼ÆÊ±¿ªÆô/ÔÝÍ££¬ÉèÖÃ°´¼üK2À´½øÐÐ24Ãë»Ø±í¡£
-3. µ¹¼ÆÊ±½áÊø£¬LEDÐ¡µÆ²¿·ÖÈ«ÁÁ£¬·äÃùÆ÷·äÃù£¬µãÕóÈ«ÁÁ£¬Ê¾Òâ±ÈÈü½áÊø![Alt text](Images/alarm.jpg)
+1. ç³»ç»Ÿä¸Šç”µçž¬é—´ï¼Œ6ä½æ•°ç ç®¡çš„é«˜2ä½æ˜¾ç¤ºè®¡æ—¶å‰©ä½™åˆ†é’Ÿæ•°ï¼Œä¸­é—´2ä½æ˜¾ç¤ºè®¡æ—¶å‰©ä½™ç§’æ•°ï¼Œä½Ž2ä½æ˜¾ç¤º24ç§’è®¡æ—¶å‰©ä½™ã€‚ä½ŽäºŒä½å˜ä¸º0ä¼šå“![Alt text](Images/run.jpg)
+2. æŒ‰é”®K1æ¥è¿›è¡Œè®¡æ—¶å¼€å¯/æš‚åœï¼Œè®¾ç½®æŒ‰é”®K2æ¥è¿›è¡Œ24ç§’å›žè¡¨ã€‚
+3. å€’è®¡æ—¶ç»“æŸï¼ŒLEDå°ç¯éƒ¨åˆ†å…¨äº®ï¼Œèœ‚é¸£å™¨èœ‚é¸£ï¼Œç‚¹é˜µå…¨äº®ï¼Œç¤ºæ„æ¯”èµ›ç»“æŸ![Alt text](Images/alarm.jpg)
 
-Ä£¿éÁ¬½Ó
+æ¨¡å—è¿žæŽ¥
 ![Alt text](Images/image.png)
-°´¼ü¿ØÖÆÄ£¿é
-ÉèÖÃ°´¼üK1À´½øÐÐ¼ÆÊ±¿ªÆô/ÔÝÍ££¬ÉèÖÃ°´¼üK2À´½øÐÐ24Ãë»Ø±í¡£
-»ù±¾Ô­Àí£º4ÌõÊäÈËÏß½Óµ½µ¥Æ¬»úµÄI/O¿ÚÉÏ£¬µ±°´ÏÂ°´¼üK1Ê±,+5VÒÀ´ÎÍ¨¹ýµç×èR1ºÍ°´¼üK1×îÖÕ½øÈëGNDÐÎ³ÉÒ»ÌõÍ¨Â·£¬ÕâÌõÏßÂ·µÄÈ«²¿µçÑ¹¶¼¼Óµ½µç×èR1ÉÏ,Òý½ÅKeyIn1¾ÍÊÇÒ»¸öµÍµçÆ½¡£µ±ËÉ¿ª°´¼üºó,ÏßÂ·¶Ï¿ª,²»»áÓÐµçÁ÷Í¨¹ý£¬KeyIn1ºÍ+5VÓ¦¸ÃÊÇµÈµçÎ»£¬ÊÇÒ»¸ö¸ßµçÆ½¡£Òò´Ë£¬¿ÉÒÔÍ¨¹ýÒý½ÅKeyIn1Õâ¸öI/O¿ÚµÄ¸ßµÍµçÆ½À´ÅÐ¶ÏÊÇ·ñÓÐ°´¼ü°´ÏÂ¡£
+æŒ‰é”®æŽ§åˆ¶æ¨¡å—
+è®¾ç½®æŒ‰é”®K1æ¥è¿›è¡Œè®¡æ—¶å¼€å¯/æš‚åœï¼Œè®¾ç½®æŒ‰é”®K2æ¥è¿›è¡Œ24ç§’å›žè¡¨ã€‚
+åŸºæœ¬åŽŸç†ï¼š4æ¡è¾“äººçº¿æŽ¥åˆ°å•ç‰‡æœºçš„I/Oå£ä¸Šï¼Œå½“æŒ‰ä¸‹æŒ‰é”®K1æ—¶,+5Vä¾æ¬¡é€šè¿‡ç”µé˜»R1å’ŒæŒ‰é”®K1æœ€ç»ˆè¿›å…¥GNDå½¢æˆä¸€æ¡é€šè·¯ï¼Œè¿™æ¡çº¿è·¯çš„å…¨éƒ¨ç”µåŽ‹éƒ½åŠ åˆ°ç”µé˜»R1ä¸Š,å¼•è„šKeyIn1å°±æ˜¯ä¸€ä¸ªä½Žç”µå¹³ã€‚å½“æ¾å¼€æŒ‰é”®åŽ,çº¿è·¯æ–­å¼€,ä¸ä¼šæœ‰ç”µæµé€šè¿‡ï¼ŒKeyIn1å’Œ+5Våº”è¯¥æ˜¯ç­‰ç”µä½ï¼Œæ˜¯ä¸€ä¸ªé«˜ç”µå¹³ã€‚å› æ­¤ï¼Œå¯ä»¥é€šè¿‡å¼•è„šKeyIn1è¿™ä¸ªI/Oå£çš„é«˜ä½Žç”µå¹³æ¥åˆ¤æ–­æ˜¯å¦æœ‰æŒ‰é”®æŒ‰ä¸‹ã€‚
 
-## ±¾ÏîÄ¿µÄ³õÖÔ
+## æœ¬é¡¹ç›®çš„åˆè¡·
 
-¼ÍÄîÕâÒ»Ê±¿Ì
+çºªå¿µè¿™ä¸€æ—¶åˆ»
 
 ## end
