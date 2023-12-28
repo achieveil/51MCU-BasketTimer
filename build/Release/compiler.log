@@ -10,8 +10,8 @@ COPYRIGHT Copyright (C) 1995-2021, Arm Limited or its Affiliates. All rights res
 @c:\Users\achie\OneDrive\Projects\EIDEProjects\51MCU-BasketTimer\build\Release\51MCU-BasketTimer.lnp .\build\Release\src\main.o TO .\build\Release\51MCU-BasketTimer
 PRINT(.\build\Release\51MCU-BasketTimer.map) REMOVEUNUSED
 ******************************************************************************
-* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0391H BYTE (44%) *
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 03D4H BYTE (47%) *
 ******************************************************************************
 
-Program Size: data=38.2 xdata=0 const=16 code=1075
+Program Size: data=40.2 xdata=0 const=16 code=1142
 LX51 RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

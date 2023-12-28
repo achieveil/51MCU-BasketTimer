@@ -77,7 +77,7 @@ void Load()
 void Reset()
 {
     Low = 24;
-    Load(); // 确保暂停时可以将24复位
+    Load(); // 确保暂停时可以讲24复位
 }
 
 // 秒表计数函数，每隔1s调用一次进行秒表计数累加
@@ -86,8 +86,8 @@ void Count()
     unsigned int i = 0;
     if (RunFLag) // 当处于运行状态时递增计数值
     {
-        Low--;        // 24部分-1
-        if (Low <= 0) // 24部分为0
+        Low--;       // 24部分-1
+        if (Low < 0) // 24部分为0
         {
             if (Mid >= 24 || High > 0)
                 Low = 24;
@@ -119,7 +119,7 @@ void KeyDriver()
         {
             if (backup[i] != 0) // 按键按下时执行动作
             {
-                if (i == 1) // Esc键复位秒表
+                if (i == 1 && (Mid >= 24 || High > 0)) // Esc键复位秒表,只有在计时大于24秒时有效
                     Reset();
                 else if (i == 0) // 回车键启停秒表
                     RunFLag = ~RunFLag;
@@ -354,12 +354,19 @@ void StartBuzz()
 // T0中断服务函数，完成数码管、按键扫描与秒表计数
 void InterruptTimer0() interrupt 1
 {
+    static int count           = 0; // 蜂鸣器循环计数
     static unsigned int tmr2ms = 0;
 
     TH0 = 0xF8; // 重新加载重载值
     TL0 = 0xCD;
     LedScan(); // 数码管扫描显示
     KeyScan(); // 按键扫描
+    if (Low <= 0) {
+        if (count < 100)
+            StartBuzz();
+        if (Mid < 24 && High == 0)
+            count++;
+    }
     // 定时2ms进行一次秒表计数
     tmr2ms++;
     if (tmr2ms >= 500) {
