@@ -29,10 +29,10 @@ unsigned char KeySta[4]  = { // 按键当前状态
 
 bit RunStopWatchFlag = 0; // 秒表运行标志
 bit RunLowFlag       = 0; // 低二位运行标志
-
-signed char Low  = 24; // 低2位显示24秒计时剩余
-signed char Mid  = 0;  // 中间2位显示计时剩余秒数
-signed char High = 12; // 6位数码管的高2位显示计时剩余分钟数
+bit BuzzFlag         = 0;
+signed char Low      = 24; // 低2位显示24秒计时剩余
+signed char Mid      = 0;  // 中间2位显示计时剩余秒数
+signed char High     = 12; // 6位数码管的高2位显示计时剩余分钟数
 void RefreshOnce();
 void Warning();
 void Load();
@@ -44,7 +44,9 @@ void StopWatchDisplay();
 void StopWatchReset();
 void LowCount();
 void LowReset();
-
+void StopWatchDisplay();
+void BuzzAction();
+void DelayHalfSecondInterrupt();
 // 将数码管的值加载到缓冲区
 void Load()
 {
@@ -64,13 +66,41 @@ void RefreshOnce()
     Load();
     StopWatchDisplay();
 }
-
+// 蜂鸣器响应函数
+void BuzzAction()
+{
+    if (BuzzFlag) {
+        StartBuzz();                // 启动蜂鸣器
+        DelayHalfSecondInterrupt(); // 调用中断延时函数，0.5秒延时
+        BUZZ     = 1;               // 关闭蜂鸣器
+        BuzzFlag = 0;               // 清除响应标志位
+    }
+}
 // Low复位
 void LowReset()
 {
     Low = 24;
     RefreshOnce();
 }
+void DelayHalfSecondInterrupt() 
+{
+    unsigned int delayCount;
+
+    // 使用定时器中断来进行延时
+    TH1 = 0xFC; // 设置定时器初值，注意这里使用了定时器1
+    TL1 = 0x67;
+    TR1 = 1; // 启动定时器1
+
+    for (delayCount = 0; delayCount < 500; delayCount++) {
+        // 等待定时器中断
+        while (!TF1)
+            ;
+        TF1 = 0; // 清除定时器1中断标志
+    }
+
+    TR1 = 0; // 关闭定时器1
+}
+
 // 秒表复位
 void StopWatchReset()
 {
@@ -108,8 +138,7 @@ void LowCount()
         StartBuzz();
         DelayHalfSecond();
         BUZZ = 1; // 关闭蜂鸣器
-    }// 当 Low 变为 0 时，启动蜂鸣器响0.5秒
-   
+    }             // 当 Low 变为 0 时，启动蜂鸣器响0.5秒
 }
 
 // 按键驱动函数，检测按键动作
@@ -327,7 +356,6 @@ void StartBuzz()
 void DelayHalfSecond()
 {
     unsigned int delayCount;
-    
 }
 
 // 秒表启停函数
@@ -342,17 +370,17 @@ void StopWatchAction()
 // T0中断服务函数，完成数码管、按键扫描与秒表计数
 void InterruptTimer0() interrupt 1
 {
-    //static int count = 0; // 蜂鸣器循环计数
+    // static int count = 0; // 蜂鸣器循环计数
 
     static unsigned int tmr2ms = 0;
 
     TH0 = 0xF8; // 重新加载初值
     TL0 = 0xCD;
     KeyScan(); // 按键扫描
-    
+
     // 定时2ms进行一次秒表计数
     tmr2ms++;
-    if (tmr2ms >= 500) {
+    if (tmr2ms >= 100) {
         tmr2ms = 0;
         if (RunStopWatchFlag) {
             StopWatchCount();
@@ -373,6 +401,9 @@ void main()
     ET0   = 1;    // 使能t0中断
     TR0   = 1;    // 使能t0
     P2    = 0xF7; // P2.3置0，即KeyOut1输出低电平，KeyIn1-4置1，开启检测
+    TH1   = 0xFC; // 初始化定时器1
+    TL1   = 0x67;
+    ET1   = 1; // 允许定时器1中断
     while (1) {
         Load();
         KeyDriver(); // 调用按键驱动函数
